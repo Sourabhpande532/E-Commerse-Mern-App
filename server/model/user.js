@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const crypto = require("crypto");
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
@@ -27,12 +28,12 @@ const userSchema = new Schema({
 
   // TODO : come back here
 
-  password: {
+  encry_password: {
     type: String,
-    trim: true,
     required: true,
     unique: true,
   },
+  /*👆@identifire[👋@ABOUT(encry_password)]*/
 
   salt: String,
 
@@ -40,12 +41,26 @@ const userSchema = new Schema({
     type: Number,
     default: 0,
   },
-
   purchases: {
     type: Array,
     default: [],
   },
 });
+
+userSchema.method = {
+  securePassword: function (plainpassword) {
+    if (!plainpassword) return "";
+    try {
+      return crypto
+        .createHmac("sha256", this.salt)
+        .update(plainpassword)
+        .digest("hex");
+    } catch (error) {
+      return "";
+    }
+  },
+};
+/* 👆@identifire[🫥(securePassword via methods)]*/
 
 module.exports = mongoose.model("User", userSchema);
 /*
