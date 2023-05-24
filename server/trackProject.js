@@ -6,6 +6,7 @@
 @talkAbout(purchases)👇👇 
 want to build an array in which i can push my All items which users is keep on purchasing let's e.g if somebuddy's purchases is course i keep users array that array i can push course value or course Id/unique id or have a access of that course.
 
+@VIRTUAL_FIELD_SECTION 
 @virtual Section 
 @ref:  => 👋🖇️ https://mongoosejs.com/docs/tutorials/virtuals.html
 @blog  => 👋🖇️ https://futurestud.io/tutorials/understanding-virtuals-in-mongoose
@@ -13,7 +14,8 @@ want to build an array in which i can push my All items which users is keep on p
 
 @virtual: bring some information from DBs & update it that's exact convection of virtual field on the Go
 @virtual: this field is basically In Mongoose, a virtual is a property that is not stored in MongoDB. Virtuals are typically used for computed properties on documents. it will help you on the go & it will help you when there is already exits something already in DBs that time as well.
-@🫣sideNote:What if, if you'r DBs hack that perspective This will help you in the wake of security sometimes what happend we don't want to save password in DBs without touching the DBs we can give a certain kind of protection in that wake this one came into picture. 
+@🫣sideNote:What if, if you'r DBs hack that perspective This will help you in the wake of security sometimes what happend we don't want to save password in DBs without touching the DBs we can give a certain kind of protection in that wake this one came into picture.
+@🫣sideNote:-> sometimes you want to perform certain kind of calculation without touching the DB from those secnario it came. 
 
 🤔🙄why do I need virtual ???
 why a'm using virtual here because of now we are stored a password in plane text i wanna don't do that 
@@ -46,7 +48,7 @@ Befoure exports the stuff
 
 ....---....
 
-@🛋️🥩identifire[🫥(securePassword via methods in mongoose)]
+@🛋️🥩identifire[🫥(securePassword via methods in mongoose)1st]
 -Need to pass something that provide me a security to encrypt my password inside methods.
 -⤵️function expect at least one argument by the term argument means provide some plane passwords & that are turn it into encrypted one ensure that don't use arrow function...-⤵️
 -⤵️ Befoure one need to change if there is password or not or user only leave the "empty" password field. why return "" -> want to take advantage of MongoDB if nothing inside that am gonna return ❕"error" that is "true" field....-⤵️

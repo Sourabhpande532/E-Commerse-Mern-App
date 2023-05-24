@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const crypto = require("crypto");
+const { v4: uuidv4 } = require("uuid");
+
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
@@ -47,6 +49,34 @@ const userSchema = new Schema({
   },
 });
 
+userSchema
+  .virtual("password")
+  .set(function (password) {
+    this._password = password;
+    this.salt = uuidv4();
+    this.encry_password = this.securePassword(password);
+  })
+  .get(function () {
+    return this._password;
+  });
+
+/*
+@KEEPNOTE:Some Info already stored at DBs then virtual use because we'r updating/modify/edit the stuff on the Go.
+
+so, in this section we need uuid as a package
+@ 🛋️ref :-> https://www.npmjs.com/package/uuid
+And we'r gonna discussed about virtual fields.
+
+@SET_FIELD_INTO_VIRTUALS
+
+@🤪talkAbout(this._password)-> it's moreever like an pravate variable that would set into DB(x), convection is that use underscore(_) so, the password is now save securly now into a variable. can reffered it later.
+@🤪talkAbout(this.salt)-> want to populate/involves/update now this one which declread already at top As soon as we'r gonna set this virtual password field & convert it into encrypted password want to update this here 
+@🤪talkAbout(this.encry_password)-> update it via securePassword() which we created via crypto package.
+
+@SET_GETTERS_NOW_INTO_VIRTUALS
+what happend if somebuddy want to take this field back
+*/
+
 userSchema.method = {
   securePassword: function (plainpassword) {
     if (!plainpassword) return "";
@@ -60,7 +90,8 @@ userSchema.method = {
     }
   },
 };
-/* 👆@identifire[🫥(securePassword via methods)]*/
+
+/* 👆@identifire[🫥(securePassword via methods)1st]*/
 
 module.exports = mongoose.model("User", userSchema);
 /*
