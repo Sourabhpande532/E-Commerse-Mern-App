@@ -34,7 +34,8 @@ why a'm using virtual here because of now we are stored a password in plane text
 @ref: => 👋🖇️ https://mongoosejs.com/docs/api/schema.html (only for study)
 H.w : => //study on above
 
-....---....
+------------------)NEW)----------------------
+
 
 @🛋️🥩identifire[👋@ABOUT(encry_password)]
 
@@ -46,9 +47,10 @@ Need to change it into encry_password why ? because i'm about to encrypt that  -
 Befoure exports the stuff
 😶‍🌫️Want to create some method first sor create method on that 
 
-....---....
+------------------)NEW)----------------------
 
-@🛋️🥩identifire[🫥(securePassword via methods in mongoose)1st]
+@🛋️🥩IDENTIFIRE[🫥(📂model/user/)@talk:securePassword via methods1st]
+
 -Need to pass something that provide me a security to encrypt my password inside methods.
 -⤵️function expect at least one argument by the term argument means provide some plane passwords & that are turn it into encrypted one ensure that don't use arrow function...-⤵️
 -⤵️ Befoure one need to change if there is password or not or user only leave the "empty" password field. why return "" -> want to take advantage of MongoDB if nothing inside that am gonna return ❕"error" that is "true" field....-⤵️
@@ -61,5 +63,34 @@ Befoure exports the stuff
  -@createHmac-> it has two two thing first is "sha256" & 2nd one "secret" need to worry on that so this secret is not going to be secret we'r going to reffer some value that haven't yet set that is "salt" surly do that on the go.....
 
  -so this method,when it is going to run so this "securePassword" method turn your plainpassword to encrypted one something like this ➡️c0fa1bc00531bd78ef38c628449c5102aeabd49b5dc3a(Go and visit above link)
+
+
+------------------)NEW)----------------------
+
+@IDENTIFIRE[🥶(📂model/user/)@talk:Hashing Password]
+
+@KEEPNOTE:Some Info already stored at DBs then virtual use because we'r updating/modify/edit the stuff on the Go.
+
+so, in this section we need uuid as a package
+@ 🛋️ref :-> https://www.npmjs.com/package/uuid
+And we'r gonna discussed about virtual fields.
+
+@SET_FIELD_INTO_VIRTUALS
+
+@📍talkAbout(this._password)-> it's moreever like an pravate variable that would set into DB(x), convection is that use underscore(_) so, the password is now save securly now into a variable. can reffered it later.
+@📍talkAbout(this.salt)-> want to populate/involves/update now this one which declread already at top As soon as we'r gonna set this virtual password field & convert it into encrypted password want to update this here 
+@📍talkAbout(this.encry_password)-> update it via securePassword() which we created via crypto package.
+
+@SET_GETTERS_NOW_INTO_VIRTUALS
+what happend if somebuddy want to take this field back
+
+@📍userSchema.method = {Need to call one more methode here that is "authenticate"}
+@MOTO:_>User login or not
+ once the user has set the password later on we might 🏧authenticate him we need methode which we can call which can match this hashed value again that's we created this authenticate methode.
+ -🎗️call method "authenticate",
+ -🎗️pass function(..take plainpassword from user here..)
+ -🎗️just return value either true(if Match) or false(Doesn't Match)
+ -🎗️call again method this.securePassword(..we can encrypt ther password from the user which is "plainpassword") -
+ -🎗️then we can match it 
 
  */

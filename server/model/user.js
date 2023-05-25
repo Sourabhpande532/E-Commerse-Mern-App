@@ -22,14 +22,10 @@ const userSchema = new Schema({
     required: true,
     unique: true,
   },
-
   userInfo: {
     type: String,
     trim: true,
   },
-
-  // TODO : come back here
-
   encry_password: {
     type: String,
     required: true,
@@ -38,7 +34,6 @@ const userSchema = new Schema({
   /*👆@identifire[👋@ABOUT(encry_password)]*/
 
   salt: String,
-
   role: {
     type: Number,
     default: 0,
@@ -48,7 +43,6 @@ const userSchema = new Schema({
     default: [],
   },
 });
-
 userSchema
   .virtual("password")
   .set(function (password) {
@@ -60,24 +54,16 @@ userSchema
     return this._password;
   });
 
-/*
-@KEEPNOTE:Some Info already stored at DBs then virtual use because we'r updating/modify/edit the stuff on the Go.
-
-so, in this section we need uuid as a package
-@ 🛋️ref :-> https://www.npmjs.com/package/uuid
-And we'r gonna discussed about virtual fields.
-
-@SET_FIELD_INTO_VIRTUALS
-
-@🤪talkAbout(this._password)-> it's moreever like an pravate variable that would set into DB(x), convection is that use underscore(_) so, the password is now save securly now into a variable. can reffered it later.
-@🤪talkAbout(this.salt)-> want to populate/involves/update now this one which declread already at top As soon as we'r gonna set this virtual password field & convert it into encrypted password want to update this here 
-@🤪talkAbout(this.encry_password)-> update it via securePassword() which we created via crypto package.
-
-@SET_GETTERS_NOW_INTO_VIRTUALS
-what happend if somebuddy want to take this field back
+/*👆
+@IDENTIFIRE[🥶(📂tp.js)@talk:Hashing Password(2d)]
 */
 
 userSchema.method = {
+  /* @FOCUSON->2nd-↙️ */
+  authenticate: function (plainpassword) {
+    return this.securePassword(plainpassword) === this.encry_password;
+  },
+  /* @FOCUSON->1st-↙️ */
   securePassword: function (plainpassword) {
     if (!plainpassword) return "";
     try {
@@ -90,10 +76,7 @@ userSchema.method = {
     }
   },
 };
-
-/* 👆@identifire[🫥(securePassword via methods)1st]*/
+/* 👆@IDENTIFIRE[🫥(📂tp.js)@talk:securePassword via methods1st]*/
 
 module.exports = mongoose.model("User", userSchema);
-/*
-  
-*/
+
