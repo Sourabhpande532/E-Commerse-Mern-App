@@ -93,4 +93,31 @@ what happend if somebuddy want to take this field back
  -🎗️call again method this.securePassword(..we can encrypt ther password from the user which is "plainpassword") -
  -🎗️then we can match it 
 
+------------------NEW-------------------
+
+ @Folder:=> @ABOUT-> 📂"model/category"
+ ------
+ Category is just a simple word which can be filete, which can be summer collectiion,winter collectiion, Diwali session .......
+
+------------------NEW-------------------
+@📍Folder:=> @ABOUT-> 📂"model/product"
+-------
+@😙in this one we'r gonna discuss @ABOUT -> product schema what product which we actually want to sell it can be tshrt, bottle, books, or it could be anything.
+
+@😶‍🌫️in E-Com industrey everything called as a "product" whatever you'want to sold @NOTE->always use "product" becasue may you'want to exchange product tshrt to books or books to children genral store that "product" name is best. 
+
+@🥲Remember every single product is associated with some kind of category it can summer collectiion, winter collectiion,... but it must be associated/link with some kind of "category" so for that mongoose introduced one thing 
+@PROCESS_of_linking_one_schema_to_another_one🙆‍♂️(e.g category schema to product schema)
+
+@🔍SEARCH(google)=> Mongoose.prototype.ObjectId
+
+@🗣️DISCUSS_ABOUT_CATEGORY--> so when is say category i really don't want to create category which is unlink want to link with previous schema 📂model/category/
+
+🎗️so for that I'm gonna distructure {} something this things is basically come from mongoose.schema; 
+e.g const {ObjectId} = mongoose.schema;
+🎗️but from where you'can actually pull up this ObjectId therer are lot more thing over there it could be from 'user','category' so for that we need to mention "ref" in category {@ref: ""} & need to tell from where it exactly pull up this one.
+
+Go and take a look at: 📂model/category/
+
+So, apart form this what else you would like to feels free to add here probably you'r tshrt is having size at the defined time weather it is md,sm,lg 
  */
