@@ -106,7 +106,7 @@ what happend if somebuddy want to take this field back
 
 @😶‍🌫️in E-Com industrey everything called as a "product" whatever you'want to sold @NOTE->always use "product" becasue may you'want to exchange product tshrt to books or books to children genral store that "product" name is best. 
 
-@🥲Remember every single product is associated with some kind of category it can summer collectiion, winter collectiion,... but it must be associated/link with some kind of "category" so for that mongoose introduced one thing 
+@🥲Remember every single product is associated with some kind of category it can summer collectiion, winter collectiion,size... but it must be associated/link with some kind of "category" so for that mongoose introduced one thing 
 @PROCESS_of_linking_one_schema_to_another_one🙆‍♂️(e.g category schema to product schema)
 
 @🔍SEARCH(google)=> Mongoose.prototype.ObjectId
@@ -120,4 +120,11 @@ e.g const {ObjectId} = mongoose.schema;
 Go and take a look at: 📂model/category/
 
 So, apart form this what else you would like to feels free to add here probably you'r tshrt is having size at the defined time weather it is md,sm,lg 
+
+
+'------------------NEW-------------------'
+
+ @📍@Folder:=> @ABOUT-> 📂"model/order"/
+
+
  */

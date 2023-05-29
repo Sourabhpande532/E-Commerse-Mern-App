@@ -54,7 +54,7 @@ const productSchema = new mongoose.Schema(
     @buffer🧐: photo is gonna be stored in "data" which is "Buffer"
 
     !This is How you put your Images into your Database there are variety of way where you don't you put U'r images into db it's sometimes make it heavier here size is small that's why...! extra info belew one
-    -In some cases 'll see when you stored this photos into separate folder of s3 of bucckets of amazon like and then we pulled the address of that. there are variety of way 
+    -In some cases 'll see when you stored this photos into separate folder of s3 of buckets of amazon like and then we pulled the address of that. there are variety of way 
     is how to handle that.
     -if i would be using firebase, i would love to put it on folder and then just pulled out the refference.. here in this one stored in DB  
     *************************************************************/
