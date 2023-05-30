@@ -1,17 +1,24 @@
 const mongoose = require("mongoose");
+const { DATABASE_URL } = process.env;
 
-const dbconnection = () => {
+exports.connect = () => {
   mongoose
-    .connect(process.env.DATABASE_CONN, {
+    .connect(DATABASE_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
-    .then(() => {
-      console.log("CONNECTED DB SUCCESSFULLY");
-    })
-    .catch(() => {
-      console.log("DB FAIL Oops");
+    .then(console.log("DB CONNECTED SUCCESSFULLY"))
+    .catch((error) => {
+      console.log(`DB CONNECTION FAILED`);
+      console.log(error);
+      process.exit(1);
     });
 };
 
-module.exports = dbconnection;
+/*
+@DB_CONCTION:__PROCESS.....😙✈️
+@Ref:__> 🔗https://mongoosejs.com/
+@Ref:__> 🔗https://mongoosejs.com/docs/connections.html
+@SIDE_NOTE__> mysql base on packages e.g npm i mysql
+
+*/

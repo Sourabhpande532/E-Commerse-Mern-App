@@ -1,5 +1,6 @@
 /**
- @fileName:📂model.js
+ @ABOUT::___>(📂user,📂product,📂order,📂category)
+ @Location:📂model.js
    ref:🖇️https://mongoosejs.com/docs/guide.html
    ref:🖇️ https://en.wikipedia.org/wiki/Salt_(cryptography)
 
@@ -124,7 +125,41 @@ So, apart form this what else you would like to feels free to add here probably 
 
 '------------------NEW-------------------'
 
+@IDENTIFIRE:[""😺""(@ABOUT:ADD_to_cart,@Location:📂model/order/)]
+@PROCESS_OF_ADD_TO_CART
+
  @📍@Folder:=> @ABOUT-> 📂"model/order"/
+@PROCESS_OF_ADD_TO_CART...
+
+@REF :+ 🔗>https://www.amazon.in/gp/cart/view.html?ref_=nav_cart
+->(🥲"clear you'r doubt related to order how the order page is look like")
+@😗KEEP_NOTE: Inside the order we have array & each array insides this order we have products;
+
+@OVERVIEW:-> Whatever you call "name" is it either be "Order page" or "Add to cart/cart" page feel free to name it.
+
+Now, my order is definately associated with "product" Schema as we just see earlier ther'r lot of products so this gonna be array of products but not actually a products the products are in the cart of array (So,😗Need to concern about that)
+
+@🧠STRATEGIES(Products)
+ Our page is consist of products which we saw earlier so this is gonna be array of products not actually the products. the products which are in the card I hope u understand that because the when the product is inside the card it is having A new property being introduced like how many quantity of product getting and what is the total of that so we called it as productCartSchema not ye defined but later on use.
+@🧠STRATEGIES(transaction_id:{})
+  optionally we not mentioned cash on delivery(we'feel free to add that just create a status and create an boolean value or is something like this)
+@🧠STRATEGIES(updated) 
+ Whenever this order is gonna be placed it's gonna be use by admin of this website as well & admin is gonna provide some updates on order like when was the order placed when I have work on something like So,we'r gonna have a Date filled here that need to be updated:Date.and 
+@🧠STRATEGIES(user)
+ actually who is placing the order so we need to find out via "user" as well ofcourser so later on we might use this orderSchema & can do lot more thing like push this value or this product things into a the user accout as well it's all a lot more stuff here
+ 
+ Now,it's time to introduced "[productCartSchema]" at top this is not ideal case secnario to defined at top or in this file but sometimes need to manage.
+
+ @🧠STRATEGIES(productCartSchema)
+ Not have a proper what to mentioned name overther, it could be product in cart ProductInOrderSchema really confused let's use ProductCartSchema 
+
+  @😗KEEP_NOTE:This are not something which is created on go this particular product based on that we create in past the 📂model/product in the card based on belew refference(ref) see
+  @📍Ideabehind(count)::How much product you want to purchases
+  @📍Ideabehind(price)::To calculate base on quantity
+  @📍Note:: You can add as much as you want like size,(md,sm,lg) delivary date,coupan,etc.
 
 
+  '------------------NEW--------------------'
+   @TALKABOUT:__> _Middleware
+   @Ref:__> 🔗✈️https://expressjs.com/en/guide/writing-middleware.html#writing-middleware-for-use-in-express-apps
  */
