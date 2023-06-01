@@ -162,4 +162,37 @@ Now, my order is definately associated with "product" Schema as we just see earl
   '------------------NEW--------------------'
    @TALKABOUT:__> _Middleware
    @Ref:__> 🔗✈️https://expressjs.com/en/guide/writing-middleware.html#writing-middleware-for-use-in-express-apps
+
+   we need to mention everytime "app.use(middleware name)" in order to move further so for that just follow along with me let's discuss common middleware that we'r gonna use in this one.
+
+   1st :💹 body parser:
+       Whenever somebuddy visit's '/login', './admin' whatever the request coming up or whatever the value requist is taking us from frontend it handles that it gives us request.body properties with the help of that we can take req.body.email,req.body.password,...whole bunch of thing is coming from frontend side. So,we've to take that information that's why.
+
+       Ref:=> 🔗✈️https://www.npmjs.com/package/body-parser
+  
+   2nd :💹 cookieParser:
+       cookie-Parser : use for fetching token,authentication
+
+   3rd :💹 cors:
+       linking up frontend to backend so we need to throw request from postman backend itself.
+       ref: 🔗✈️ https://www.npmjs.com/package/cors 
+       in order to understand cors need to go this belew link.       
+       ref: 🔗✈️ https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
+       you can make backend requist otherthan offisial domain that exact MOTO.
+       @KEEP_NOTE:-> Need to bring all of this in the app.js form this middleware e.g see this comment(app.js):-> 
+       -*Middleware Packages 
+       -*Middleware use
+
+
+   '------------------NEW--------------------'
+   @TALKABOUT:__> 💹Router in express:
+   Ref: 🔗✈️
+   In,the entire one we'r gonna foucus on "API"  so follow along with me.
+   -creting API through backend(best way to handles backend);
+   -you can handles this API through mobile app,web app,however you'want to processd.
+   - [Template engine] ✈️🔗https://expressjs.com/en/guide/using-template-engines.html
+
+   - [Routing] ✈️🔗https://expressjs.com/en/guide/routing.html
+     Core strong point of Routing API
+     -So, in this one we'r using express 💹Router
  */
