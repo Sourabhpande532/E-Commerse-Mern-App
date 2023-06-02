@@ -3,6 +3,9 @@ require("./config/conn").connect();
 const express = require("express");
 const app = express();
 
+/*bring Up auth route */
+const authRoute = require("./routes/auth")
+
 /*Middleware Packages */
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -12,6 +15,10 @@ const cors = require("cors");
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors())
+
+/*API__SECTION */
+app.use("/api",authRoute);
+
 
 app.get("/",(req,res)=>{
     res.send("Hello")

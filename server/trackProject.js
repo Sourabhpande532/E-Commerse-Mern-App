@@ -167,6 +167,8 @@ Now, my order is definately associated with "product" Schema as we just see earl
 
    1st :💹 body parser:
        Whenever somebuddy visit's '/login', './admin' whatever the request coming up or whatever the value requist is taking us from frontend it handles that it gives us request.body properties with the help of that we can take req.body.email,req.body.password,...whole bunch of thing is coming from frontend side. So,we've to take that information that's why.
+       @😗KEEP_NOTE:-> want to take advantage of this middleware just write it down belew exports.signout in console.log("REQ BODY", req.body); go and check 📂"controller/auth.js"
+       @🧐Rigion_whatever you fire from frontend side this req.body have access through that's core region "bodyParser" came.
 
        Ref:=> 🔗✈️https://www.npmjs.com/package/body-parser
   
@@ -195,4 +197,24 @@ Now, my order is definately associated with "product" Schema as we just see earl
    - [Routing] ✈️🔗https://expressjs.com/en/guide/routing.html
      Core strong point of Routing API
      -So, in this one we'r using express 💹Router
+
+In order to bring route we need use 💹Router
+ref: -> https://expressjs.com/en/guide/routing.html 
+
+
+   '------------------NEW--------------------'
+   @TALKABOUT:__> 💹SAVING A USER TO DATABASE:
+   @woking on 📂""controller/auth/"" on singup route
+    
+   in order to save user to DATABASE we need to bring model with same name convection that you mention at end "User" while "module.exports = mongoose.model("User", userSchema);" it's recommendation. not at compulasory but do that.
+   @PROCESS
+   -🔺create object(with name of const 'user' @😶‍🌫️HINT: class in Js)
+   -🔺object populate/include by req.body ("via bodyParser")
+   -🔺Now,we'v parmission To take advantage of mongoose DATABASE method that provide us.
+    (e.g user.save(),user.populate(), user ....many more always same for firbase...)
+   -🔺Need to call "Callback" to provide more Info or to ensure user is successfully save or not.
+    (it expect 2 "Parameters" call it 'err','user' so this is like object that save into DB)
+    -🔺Check for validation
+    @😗KEEP_NOTE: in methods if ther is two time you mention "return keyword" it's not gonna work.only one 'return keyword' allow O.W terminates. return mean "end" function stop processing.
+    
  */

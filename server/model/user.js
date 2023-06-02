@@ -64,7 +64,7 @@ userSchema
 @IDENTIFIRE[🥶(📂tp.js)@talk:Hashing Password(2d)]
 */
 
-userSchema.method = {
+userSchema.methods = {
   /* @FOCUSON->2nd-↙️ */
   authenticate: function (plainpassword) {
     return this.securePassword(plainpassword) === this.encry_password;
