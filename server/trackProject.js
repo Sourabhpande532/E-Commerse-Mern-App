@@ -216,5 +216,40 @@ ref: -> https://expressjs.com/en/guide/routing.html
     (it expect 2 "Parameters" call it 'err','user' so this is like object that save into DB)
     -🔺Check for validation
     @😗KEEP_NOTE: in methods if ther is two time you mention "return keyword" it's not gonna work.only one 'return keyword' allow O.W terminates. return mean "end" function stop processing.
+
+    @🖲️MAIN_ROLE_OF_""BODY_PARSER""_IS_BRING_INFO_FORM_FRONTEND
+    DO_ console.log(req.body)
+
+
+    
+   '------------------NEW--------------------'
+   @TALKABOUT:__> 💹SETTING UP VALIDATION IN ROUTES:
+
+   Ref:✈️🔗https://express-validator.github.io/docs/guides/customizing/
+
+   @🖲️😗Gonna_Focus_ON: ""Custom Error Message""(https://express-validator.github.io/docs/6.3.0/custom-error-messages)
+
+   @🖲️😗LOCATION: 📂👉routes/auth.js
+
+
+  .........KEEP_ON
+   
+  @TALKABOUT:__> 💹VALIDATION RESULT 
+
+  @🖲️😗LOCATION: 📂👉controllers/auth.js
+  https://express-validator.github.io/docs/6.3.0/
+  @NEED_TO_WORK_below like that in 📂👉controllers/auth.js(signup)
+
+  {"errors": [{"location": "body","msg": "Invalid value","param": "username"
+  }]
+}
+
+
+
+
+
+
+
+
     
  */

@@ -1,22 +1,35 @@
 const User = require("../model/user");
 
-exports.signup = (req, res) => {
-    /* @stategies(Process of saving Data into DB)*/
-    const user = new User(req.body);
-    user.save((err, user) => {
-      if (err) {
-        return res.status(400).json({
-          err: "Not able to save user in DB",
-        });
-      }
-      /*selectively select */
-      res.status(200).json({
-        name: user.name,
-        email: user.email,
-        id: user._id,
+const { check, validationResult } = require('express-validator');
+
+exports.signup = async (req, res) => {
+/* @__PROCESS_OF_SAVING_TO_DB*/
+  try {
+    const errors = validationResult(req);
+    /*actually binds this validationresult with request.body*/
+    
+    if (!errors.isEmpty()) {
+      return res.status(422).json({
+        error: errors.array()[0].msg,
       });
+    }
+    const user = new User(req.body);
+    await user.save();
+  /* @_SELECTIVELY_PICK */
+    res.status(200).json({
+      name: user.name,
+      email: user.email,
+      id: user._id,
+      message: "User Sucessfully ADD To DATABASE"
     });
-  };
+    
+  } catch (err) {
+    res.status(400).json({
+      err: "Not able to save user in DB",
+    });
+  }
+};
+
 
 exports.signout = (req, res) => {
   console.log("REQ BODY", req.body);
