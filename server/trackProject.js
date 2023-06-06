@@ -244,6 +244,28 @@ ref: -> https://expressjs.com/en/guide/routing.html
   }]
 }
 
+    
+  '------------------NEW--------------------'
+  @TALKABOUT:__> 💹What are token & how to create & set into cookies:
+  -🔺npm i jsonwebtoken
+  -🔺npm i cookie-parser
+  -🔺how do we constly chcking the user is login or not another term it judge you is authenticate or not for that we've ↙️
+  -npm i express-jwt
+   ref:-> https://www.npmjs.com/package/express-jwt
+
+
+   
+  '------------------NEW--------------------'
+  @TALKABOUT:__> 💹Sending tokens in cookies for users
+  @TALKABOUT: 📂controller/auth/(signin)
+- 🎗️Bring email and password via req.body follow the process of distructuring.
+- 🎗️Then check for express-validator apply "validation"
+- 🎗️Match user side email & DATABASE side email if match go further
+- 🎗️Match user side email & DATABASE side email if match go further
+- 🎗️then check for "password" weather password match or not form user side password & DB side match if match go ahdad.(form:📂model/user/@hint:check authenticate)
+- 🎗️signin the user what do i mean signin
+  🔺create a token
+  🔺put that token into cookies
 
 
 

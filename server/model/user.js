@@ -64,7 +64,7 @@ userSchema
 */
 
 userSchema.methods = {
-  /* @FOCUSON->2nd-↙️ */
+  /* @FOCUSON->2nd-↙️ take password from frontend and match with Db base on that it return true or false */
   authenticate: function (plainpassword) {
     return this.securePassword(plainpassword) === this.encry_password;
   },
