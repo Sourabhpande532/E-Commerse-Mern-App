@@ -31,56 +31,52 @@ exports.signup = async (req, res) => {
   }
 };
 
-exports.signin = async (req, res) => {
-  try {
-    const errors = validationResult(req);
+exports.signin = (req, res) => {
+  const errors = validationResult(req);
 
-    const { email, password } = req.body;
+  const { email, password } = req.body;
 
-    if (!errors.isEmpty()) {
-      return res.status(422).json({
-        error: errors.array()[0].msg,
-      });
-    }
-    /*match email from Frontend(user) to DATABASE exit or not */
-    await User.findOne({ email }, (err, user) => {
-      if (err || !user) {
-        res.status(400).json({
-          error: "User Email Does Not Exit",
+  if (!errors.isEmpty()) {
+    return res.status(422).json({
+      error: errors.array()[0].msg,
+    });
+  }
+
+  User.findOne({ email })
+    .then((user) => {
+      if (!user) {
+        return res.status(400).json({
+          error: "User email does not exist",
         });
       }
 
-      /*check for weather password match or not(form:📂model/user/)*/
       if (!user.authenticate(password)) {
         return res.status(401).json({
           error: "Email and password do not match",
         });
       }
 
-      /*Signin process */
+      /*create token */
+      const token = jwt.sign({ _id: user._id },process.env.SECRETE);
 
-      /*creating a token */
-      const token = jwt.sign({ _id: user._id }, process.env.PRAVATEKEY);
-
-
-      /*put token into cookie */
+      /*create cookie */
       res.cookie("token", token, { expire: new Date() + 9999 });
 
-      /*Send responce to frontend one for react becasue don't have any idea */
+      /*send response to frontend */
       const { _id, name, email, role } = user;
-      return res.json({ token, user: { _id, name, email, role}});
+      return res.json({
+        message: "User successfully logged in",
+        token, // for local storage
+        user: { _id, name, email, role },
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+      return res.status(500).json({
+        error: "Internal server error",
+      });
     });
-
-  } 
-  catch (err) {
-    // res.status(400).json({
-    //   err: "Invalid credentionalss",
-    // });
-    console.log(err);
-  }
-  //ref:tp.js(title:💹Sending token into cookies)
 };
-
 
 exports.signout = (req, res) => {
   console.log("REQ BODY", req.body);
