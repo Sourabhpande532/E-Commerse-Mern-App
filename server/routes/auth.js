@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { check } = require("express-validator");
-const { signout, signup, signin } = require("../controller/auth");
+const { signout, signup, signin,isSignedIn } = require("../controller/auth");
 
 /*SIGN UP */
 router.post(
@@ -37,10 +37,26 @@ router.post(
   signin
 );
 
-
-
-
+//LOGOUT
 router.get("/signout", signout);
+
+
+
+// isSignedIn Route(Middleware) 
+router.get("/protected",isSignedIn,(req,res)=>{
+  // res.send("This is protected route(signin)")
+  res.json(req.auth);
+})
+
+/*
+@KEY_POINTS_ABOVE_MIDDLEWARE🔝🔝
+ with bearer we've to logged in token also beside Bearer then actually protected
+ -this middleware put this auth into request 
+ -this is full authentication exactly which holds id
+ -base on this id we'll do lot more testing further
+ -auth come from auth controller line no. 156 */
+
+
 
 module.exports = router;
 

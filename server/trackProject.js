@@ -270,6 +270,62 @@ ref: -> https://expressjs.com/en/guide/routing.html
 
 
 
+'---------------------NEW-----------------------'
+  @TALKABOUT:__> 💹How to protect Route
+  
+@😗KEEP_NOTE:-> "express-jwt" package use for protecting the route 
+@TALKABOUT:->[isSignedIn(middleware)]
+
+Ref: 🔗✈️https://www.npmjs.com/package/express-jwt
+In, this one we'r discussing how to put restication on route exact same termonoloy use it everywhere IsSignIN,IsAuthenticate,IsAdmin,IsSemiAdmin or other....this are all the terminalogy we use moreever here...let known the defference between IsSingn & IsAuthenticate
+
+@Why next not use 🧐😗?express-jwt -> it already covered the consept of next that'why we not mention 
+
+-🔺IsSingn -> user is LOGIN into our application & ready for hand dirty;
+-🔺IsAuthenticate:-> take a e.g of Facebooke site he only allow to to change you'r profile not other one because it is in the mode of ""protected route"" would you'be able to some changes you'r friend profile? ofcourse not that's how protected route came into play.
+ 
+@😑MAKE_SURE:->cookie-parser install becz cookie-parser is allow us to set some property(userProperty) inside user
+
+@Postman: while teasting this route on postman need to user signin o.w it will not allow to access the route and addination need to pass compusory token in authorization is compulasory
+@API:-> ✈️🔗http://localhost:4000/api/protected
+
+VIA_req.auth we get id {
+    "_id": "64805760e34038bacaa76bb8",
+    "iat": 1686216187
+}
+ base on this one we do further authentication process like isAuthenticated,isAdmin with that.
+
+
+'---------------------NEW-----------------------'
+
+@TITLE:->how to write custom middleware:
+@ABOUT[isAuthenticated,  isAdmin]
+@LOCATION: controller/auth/
+
+Let's discuss tine-tyny about userProperty = "auth" what does that mean how it is important for us🧐😑?
+
+-onec we actually giving a middleware & we'r using any route So, it just add a new property inside the "req" via this userProperty name as "auth" so as i told this middleware put this[ userProperty:"auth"](present on controller/isSignedIn) into the "req"
+
+So it holds id onece after via check below API it could be anyid singin,signout any.....
+
+
+@API:-> ✈️🔗http://localhost:4000/api/protected [routes/auth/]
+
+@NeedToFocus: 1) 🔺isAuthenticated
+              2) 🔺isAdmin
+
+-🎗️isAuthenticated:_> 
+@OverallConclusion
+  -req.profile is goint to set up from fronted.
+  -req.auth this one is going to set up by top middleware.
+  -req.profile._id === req.auth._id  if the profile id we've set frm frontend 
+  -if it is equal req.auth._Id which is set by top middleware we set. & it's gonna match then then you'r the owner you can do whatever you want.
+
+  **That all mean user can change/modify by his own account**
+
+-🎗️ isAdmin: go and model/user/[see role]
+if ther role is zero then consider "regular user";
+if the role is 1 then consider "admin"
 
 
 

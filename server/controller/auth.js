@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const { expressjwt: isAuthCheck } = require("express-jwt");
 const { check, validationResult } = require("express-validator");
 
+// SIGNUP
 exports.signup = async (req, res) => {
   /* @__PROCESS_OF_SAVING_TO_DB*/
   try {
@@ -31,6 +32,7 @@ exports.signup = async (req, res) => {
   }
 };
 
+// LOGIN
 exports.signin = (req, res) => {
   const errors = validationResult(req);
 
@@ -57,7 +59,7 @@ exports.signin = (req, res) => {
       }
 
       /*create token */
-      const token = jwt.sign({ _id: user._id },process.env.SECRETE);
+      const token = jwt.sign({ _id: user._id }, process.env.SECRETE);
 
       /*create cookie */
       res.cookie("token", token, { expire: new Date() + 9999 });
@@ -78,7 +80,42 @@ exports.signin = (req, res) => {
     });
 };
 
+// LOGOUT
 exports.signout = (req, res) => {
-  console.log("REQ BODY", req.body);
-  res.json({ message: "user successfully signout" });
+  res.clearCookie("token");
+  /*middleware allow this stuff cookie-Parser() we've cookie body itself i.e */
+  // console.log("REQ BODY", req.body);
+  res.json({ message: "user successfully signout/logout" });
 };
+
+// PROTECTE ROUTE(Middleware)
+exports.isSignedIn = isAuthCheck({
+  secret: process.env.SECRETE,
+  algorithms: ["HS256"],
+  userProperty: "auth",
+});
+/*isSignedIn:-> it gives us id to ensure that user is protected or not*/
+
+
+//CUSTOM MIDDLEWARE(isAuthenticated)
+exports.isAuthenticated = (req, res, next) => {
+  let checker = req.profile && req.auth && req.profile._id == req.auth._id;
+  if(!checker){
+    return res.status(403).json({
+    error: "ACCESS DENIED"  
+    })
+  }
+  next();
+};
+
+//CUSTOM MIDDLEWARE(isAdmin);
+exports.isAdmin = (req, res, next) => {
+  if(req.profile.role === 0){
+    return res.status(403).json({
+    error: "You are not Admin, ACCESS ADMIN"
+    })
+  }
+  next();
+};
+
+
