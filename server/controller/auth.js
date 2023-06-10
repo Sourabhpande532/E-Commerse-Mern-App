@@ -97,7 +97,7 @@ exports.isSignedIn = isAuthCheck({
 /*isSignedIn:-> it gives us id to ensure that user is protected or not*/
 
 
-//CUSTOM MIDDLEWARE(isAuthenticated)
+//HOW TO WRITE CUSTOM MIDDLEWARE
 exports.isAuthenticated = (req, res, next) => {
   let checker = req.profile && req.auth && req.profile._id == req.auth._id;
   if(!checker){

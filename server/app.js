@@ -3,8 +3,10 @@ require("./config/conn").connect();
 const express = require("express");
 const app = express();
 
-/*bring Up auth route */
+/*bring Up auth,user route */
 const authRoute = require("./routes/auth")
+const userRoute = require("./routes/user")
+
 
 /*Middleware Packages */
 const bodyParser = require("body-parser");
@@ -18,6 +20,7 @@ app.use(cors())
 
 /*API__SECTION */
 app.use("/api",authRoute);
+app.use("/api",userRoute);
 
 
 app.get("/",(req,res)=>{

@@ -277,6 +277,8 @@ ref: -> https://expressjs.com/en/guide/routing.html
 @TALKABOUT:->[isSignedIn(middleware)]
 
 Ref: 🔗✈️https://www.npmjs.com/package/express-jwt
+@KEEP_NOTE: express-jwt use for protecting ROUTE
+
 In, this one we'r discussing how to put restication on route exact same termonoloy use it everywhere IsSignIN,IsAuthenticate,IsAdmin,IsSemiAdmin or other....this are all the terminalogy we use moreever here...let known the defference between IsSingn & IsAuthenticate
 
 @Why next not use 🧐😗?express-jwt -> it already covered the consept of next that'why we not mention 
@@ -298,7 +300,7 @@ VIA_req.auth we get id {
 
 '---------------------NEW-----------------------'
 
-@TITLE:->how to write custom middleware:
+@TITLE:->HOW TO WRITE CUSTOM MIDDLEWARE:
 @ABOUT[isAuthenticated,  isAdmin]
 @LOCATION: controller/auth/
 
@@ -327,7 +329,79 @@ So it holds id onece after via check below API it could be anyid singin,signout 
 if ther role is zero then consider "regular user";
 if the role is 1 then consider "admin"
 
+'---------------------NEW-----------------------'
+
+@TITLE:-> what are param ??
+@ABOUT[]
+@LOCATION:[app.js,routes,controller,model]
+
+@Ref: 🔗✈️https://expressjs.com/en/4x/api.html#router.param
+
+Need to call this 🤔🙄??  
+const userRoute = require("./routes/user")
+app.use("/api",userRoute);
+
+we'r directly pull it from URL after middleware.
 
 
-    
+
+'---------------------NEW-----------------------'
+
+@TITLE:-> -GET ID FROM PARAM-
+@ABOUT[🔺getUserById, 🔺getUser]
+@LOCATION:📂[controller/user/]
+
+@Ref: 🔗✈️https://expressjs.com/en/4x/api.html#router.param
+
+@ABOUT: getUserById;
+in this one we'r gonna exports so that params can handled. Need to pass id while calling(getUserById) id is gonna something which is gonna come up from the url in routes and is gonna something like this "/:id"
+🤨Remember : findOne & findById work exactly same.
+
+-Whenever there is callback it always return two thigs it could be either err or 2nd would be object itself(user)
+-if the error was not there so we can stored that user into object itself(req.profile = user)
+
+@ABOUT: getUser;
+So getUserById work with params & getUser work when somebuddy call this method we will get back "user" info;
+-see in getUserById : so since in this req.profile we got all the information what we needed so we can simply send a response back here in this getUser; we need atually some method to varify that;
+
+'---------------------NEW-----------------------'
+
+@TITLE:-> HANDLING USER ROUTE
+@ABOUT[🔺getUserById, 🔺getUser]
+@LOCATION:📂[routes/user/]
+
+HANDLING USER ROUTE  
+
+🔺getUserById: 
+this filled is going to populate  Whenever it found something in any route "/:x" that would be first interpreted as "userId" as we mention then this method automatically populate req.profile with user object that's coming it from DB. 🎐@hint:router.param
+
+🔺getUser
+So with all the routes that associated with user i'm gonna simply say just user infront of them 🎐@hint:router.get("/user/:userId" getUser);
+@😱KEEP_NOTE: ""/:userId"" gonna come from "signin/login" user don't confuzed 
+
+So, Why those we need this one 🤨🤔?
+Now in the auth controller if you notice some middleware we injected ther isSignedIn,isAuthenticated,isAdmin so we need bring as well Now you use them whatever the route you want to protected & however you want to protected.
+👇👇
+@SIDE_NOTE:->
+we used all of them as a protected route here
+if user want all of information like name, email,
+however he has set his profile then simply befour
+getting his profile he should be isSignein, isAuthenticated also so this is we implemented;
+
+this all are middleware can insert anywhere 
+
+'---------------------NEW-----------------------'
+
+@TITLE:-> FIXING & TEASTING BUGS
+@ABOUT[🔺getUser]
+@LOCATION:📂[routes/user/] for Bring URL 
+@Request : GET
+
+@POSTMAN_URL: http://localhost:4000/api/user/64805760e34038bacaa76bb8
+
+@OVERVIEW@
+So, this is all good now we can a request easily /user/:userId need to pass this "userId" & since we protected our routes via isSignedIn,isAuthenticated So we need pass "signin/login" "token" as well in "headers"
+
+Mistakely: we pass "===" so instead need to pas "==" because we are checking here for value not object becaz they are not same object itself that's why == double equal to 
+
  */
