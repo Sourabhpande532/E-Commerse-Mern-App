@@ -271,8 +271,11 @@ ref: -> https://expressjs.com/en/guide/routing.html
 
 
 '---------------------NEW-----------------------'
-  @TALKABOUT:__> 💹How to protect Route
-  
+@TALKABOUT:__> 💹HOW TO PROTECTED ROUTE
+@ABOUT[isSignedIn, isAuthenticated,  isAdmin]
+@LOCATION: [📂controller/auth/ 📂routes/auth/]
+
+
 @😗KEEP_NOTE:-> "express-jwt" package use for protecting the route 
 @TALKABOUT:->[isSignedIn(middleware)]
 
@@ -284,9 +287,12 @@ In, this one we'r discussing how to put restication on route exact same termonol
 @Why next not use 🧐😗?express-jwt -> it already covered the consept of next that'why we not mention 
 
 -🔺IsSingn -> user is LOGIN into our application & ready for hand dirty;
--🔺IsAuthenticate:-> take a e.g of Facebooke site he only allow to to change you'r profile not other one because it is in the mode of ""protected route"" would you'be able to some changes you'r friend profile? ofcourse not that's how protected route came into play.
+-🔺IsAuthenticate:-> take a e.g of Facebooke site he only allow to to change you'r profile not other one because it is in the mode of ""protected route"" would you'be able to some changes you'r friend profile? ofcourse not, that's how protected route came into play.
  
 @😑MAKE_SURE:->cookie-parser install becz cookie-parser is allow us to set some property(userProperty) inside user
+
+@😑MAKE_SURE:->What actually userProperty doing there in belew one it gives you a current id what authenticatae route
+you acturally working it just add a new property inside the request which user propety auth go and check 📂routes/auth.js 
 
 @Postman: while teasting this route on postman need to user signin o.w it will not allow to access the route and addination need to pass compusory token in authorization is compulasory
 @API:-> ✈️🔗http://localhost:4000/api/protected
@@ -394,14 +400,26 @@ this all are middleware can insert anywhere
 
 @TITLE:-> FIXING & TEASTING BUGS
 @ABOUT[🔺getUser]
-@LOCATION:📂[routes/user/] for Bring URL 
+@LOCATION:📂[routes/user/,controller/user/] for Bring URL 
 @Request : GET
 
-@POSTMAN_URL: http://localhost:4000/api/user/64805760e34038bacaa76bb8
+   
+@@"email":"rampawar12@gmail.com",
+@@"password":"1234"
+🏤@POSTMAN_URL: http://localhost:4000/api/user/64805760e34038bacaa76bb8
 
-@OVERVIEW@
+after hit above we got lot more thing like role,purchases,id,name,email,salt,encry_password but point is that what is the use of salt & encry_password overther 🤔🤨??
+this shouldn't be populate into user browser in frontend so we need update our method little bit or hide this information via ""getUser"" in controller.
+KEEP_NOTE: make sure we'r not removing from DB removing only from fronted/user profile "req.profile"side below one
+
+req.profile.salt = undefined;
+req.profile.encry_password = undefined;
+req.profile.updatedAt = undefined;
+
+📑@OVERVIEW@
 So, this is all good now we can a request easily /user/:userId need to pass this "userId" & since we protected our routes via isSignedIn,isAuthenticated So we need pass "signin/login" "token" as well in "headers"
 
-Mistakely: we pass "===" so instead need to pas "==" because we are checking here for value not object becaz they are not same object itself that's why == double equal to 
+🤦‍♂️Mistakely: we pass "===" so instead need to pas "==" because we are checking here for value not object becaz they are not same object itself that's why == double equal to
+
 
  */

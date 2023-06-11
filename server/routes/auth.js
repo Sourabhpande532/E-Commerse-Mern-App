@@ -54,7 +54,7 @@ router.get("/protected",isSignedIn,(req,res)=>{
  -this middleware put this auth into request 
  -this is full authentication exactly which holds id
  -base on this id we'll do lot more testing further
- -auth come from auth controller line no. 156 */
+ -auth come from auth controller line no. between 90's */
 
 
 

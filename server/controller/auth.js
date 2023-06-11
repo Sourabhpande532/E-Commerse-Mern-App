@@ -88,13 +88,13 @@ exports.signout = (req, res) => {
   res.json({ message: "user successfully signout/logout" });
 };
 
-// PROTECTE ROUTE(Middleware)
+// OW TO PROTECTED ROUTE(Middleware)  
 exports.isSignedIn = isAuthCheck({
   secret: process.env.SECRETE,
   algorithms: ["HS256"],
   userProperty: "auth",
 });
-/*isSignedIn:-> it gives us id to ensure that user is protected or not*/
+/*isSignedIn:-> it gives us id to ensure that user is protected or not or also give you ensurity it login or not*/
 
 
 //HOW TO WRITE CUSTOM MIDDLEWARE
@@ -107,6 +107,7 @@ exports.isAuthenticated = (req, res, next) => {
   }
   next();
 };
+
 
 //CUSTOM MIDDLEWARE(isAdmin);
 exports.isAdmin = (req, res, next) => {
