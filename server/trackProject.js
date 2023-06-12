@@ -421,5 +421,34 @@ So, this is all good now we can a request easily /user/:userId need to pass this
 
 🤦‍♂️Mistakely: we pass "===" so instead need to pas "==" because we are checking here for value not object becaz they are not same object itself that's why == double equal to
 
+'---------------------NEW-----------------------'
 
+@TITLE:-> LEARN TO UPDATE USER INFO
+@ABOUT: moreever like update route
+@LOCATION:[🔺routes/user, 🔺controller/user/] 
+@REQUEST : PUT 
+
+So,we'r discuss about put request so base on it form where we send fronted is heavealy dependant are we fire get or put...it should isSignedIn,isAuthenticated must be 
+
+@KEEP_IT_IN_MIND
+while calling this "put" method user should be exits in DB O.w Not work.
+
+@OVERVIEW@
+base on _id: we'r looking it for ""user"" in DB;
+pass 1st object:
+req.profile_id: from where this "id" it coming it from--
+@😗KEEP_NOTE: let me clear one this this req.profile = user is already having all info of user.
+---middleware fire up this Id if you take a look on routes/user/ & base on that it set the filled.
+🔺@further
+pass 2nd object: What'r the information that you'r going to update that set into {$set}
+use this $set & i want to updates from req.body so that's where the fronted is kiking up so..
+🔺@further
+Pass new to update instatly & addinationally need to pass callback(expect two thing either user && err)
+
+OVERSLL CONCLUSION 
+-first find User via _id
+-looking it for update info that you want
+-pass compulasory Parameters
+
+POSTMAN_URL: 🔗✈️http://localhost:4000/api/user/6486efbd8fb8d6c3c3f45229
  */

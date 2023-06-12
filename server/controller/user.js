@@ -29,3 +29,32 @@ exports.getUser = (req, res) => {
 };
 
 
+// UPDATE USER
+exports.updateUser = async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      req.profile._id,
+      { $set: req.body },
+      { new: true, useFindAndModify: false }
+    ).select('-salt -encry_password');
+
+    if (!user) {
+      return res.status(400).json({
+        error: 'You are not authorized to update this user or the update in the database was not successful.',
+      });
+    }
+    //DON'T WANNA SEND TO FRONEND
+    user.salt = "";
+    user.encry_password = undefined;
+    res.json(user);
+
+  } catch (err) {
+    return res.status(400).json({
+      error: 'An error occurred while updating the user.',
+    });
+  }
+};
+
+
+
+
