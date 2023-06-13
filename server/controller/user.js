@@ -1,4 +1,5 @@
 const User = require("../model/user");
+const Order = require("../model/order");
 
 // -GET ID FROM Param-
 exports.getUserById = (req, res, next, id) => {
@@ -28,7 +29,6 @@ exports.getUser = (req, res) => {
   return res.json(req.profile);
 };
 
-
 // UPDATE USER
 exports.updateUser = async (req, res) => {
   try {
@@ -36,25 +36,55 @@ exports.updateUser = async (req, res) => {
       req.profile._id,
       { $set: req.body },
       { new: true, useFindAndModify: false }
-    ).select('-salt -encry_password');
+    ).select("-salt -encry_password");
 
     if (!user) {
       return res.status(400).json({
-        error: 'You are not authorized to update this user or the update in the database was not successful.',
+        error:
+          "You are not authorized to update this user or the update in the database was not successful.",
       });
     }
     //DON'T WANNA SEND TO FRONEND
     user.salt = "";
     user.encry_password = undefined;
     res.json(user);
-
   } catch (err) {
     return res.status(400).json({
-      error: 'An error occurred while updating the user.',
+      error: "An error occurred while updating the user.",
     });
   }
 };
 
+// USING POPULATE FROM OTHER COLLECTION
+// exports.userPurchasedList = async (req, res) => {
+//   try {
+//     const order = await Order.find({ user: req.profile._id }).populate(
+//       "user",
+//       "_id name email"
+//     );
+//     if (!order) {
+//       return res.status(400).json({
+//         error: "No Order in this Account.",
+//       });
+//     }
+//     return res.json(order);
+//   } catch (error) {
+//     return res.status(400).json({
+//       error: "An error occurred while updating the user.",
+//     });
+//   }
+// };
 
-
+exports.userPurchasedList = (req, res) => {
+  Order.find({ user: req.profile._id })
+    .populate("user", "_id name email")
+    .exec((err, order) => {
+      if (err) {
+        return res.status(400).json({
+          error: "No Order in this Account",
+        });
+      }
+      return res.json(order); //wih this we get entire object from model/order
+    });
+};
 

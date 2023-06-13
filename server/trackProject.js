@@ -451,4 +451,33 @@ OVERSLL CONCLUSION
 -pass compulasory Parameters
 
 POSTMAN_URL: 🔗✈️http://localhost:4000/api/user/6486efbd8fb8d6c3c3f45229
+
+
+
+'---------------------NEW-----------------------'
+
+@TITLE:-> USING POPULATE FROM OTHER COLLECTION
+@ABOUT: userPurchasedList
+@LOCATION:[🔺controller/user/,🔺routes/user, ] 
+@REQUEST : PUT 
+ 
+Ref : 🔗✈️https://youtu.be/mSQwg_H2T7c
+Ref : 🔗✈️https://youtu.be/VuSt5-AwL8Y
+
+-🎗️Merge process is know as populate data by the term merge means two schema become one & and show the output see 2nd link.
+-🎗️in this one we'r reffering cross ❌ collection by the term it mean merging process.there is user collection & there is Order collection we need to interrefference between them.
+-🎗️I want to store all entire Order list what user is purchasing in my user model took a look 📂model/user.js see between 40's "purchase".
+Read Docs on POPULATE👇
+
+Ref : 🔗✈️ https://mongoosejs.com/docs/populate.html
+
+@CONTROLLER@
+-🎗️ while called method you'r gonna notice everytime you found this object {ObjectId,ref} Always.
+-🎗️want to find base on middleware id that provide getUserById that's why {user: req.profile._id}; 🔺@Remember: Need to find Order user via ref: "User"
+-🎗️Now it's time to use populate How we can use populate @Remember since any time you reffering something(ObjectId,ref:"User") in defferent COLLECTION(talke about model/order) that is exact movement you want use populate.
+
+we need to pass two thing compulsaory
+ -🎗️➕1st is which model or object you want to update...e.g(model/order) see user object over there that's exactly one know as 🔺"user:{ type: ObjectId, ref: "User",}" 
+ -🎗️➕2nd is what are the field you want to bring in e.g like _id name email no extra comma(,) or anything.
+
  */
