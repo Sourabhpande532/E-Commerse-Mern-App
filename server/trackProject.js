@@ -459,7 +459,7 @@ POSTMAN_URL: 🔗✈️http://localhost:4000/api/user/6486efbd8fb8d6c3c3f45229
 @TITLE:-> USING POPULATE FROM OTHER COLLECTION
 @ABOUT: userPurchasedList
 @LOCATION:[🔺controller/user/,🔺routes/user, ] 
-@REQUEST : PUT 
+@REQUEST : GET 
  
 Ref : 🔗✈️https://youtu.be/mSQwg_H2T7c
 Ref : 🔗✈️https://youtu.be/VuSt5-AwL8Y
@@ -479,5 +479,58 @@ Ref : 🔗✈️ https://mongoosejs.com/docs/populate.html
 we need to pass two thing compulsaory
  -🎗️➕1st is which model or object you want to update...e.g(model/order) see user object over there that's exactly one know as 🔺"user:{ type: ObjectId, ref: "User",}" 
  -🎗️➕2nd is what are the field you want to bring in e.g like _id name email no extra comma(,) or anything.
+
+ 
+'---------------------NEW-----------------------'
+
+@TITLE:-> MIDDLEWARE TO UPDATE PURCHASE
+@ABOUT: pushOrderInPurchasedList
+@LOCATION:[🔺controller/user/,🔺routes/user, ] 
+@REQUEST : PUT 
+
+so far we've created this exports.userPurchasedList & we'r pulling some information from Order model you need to know about that very important 
+& we'r selecting the order which are base on req.profile_id see at 🗃️userPurchasedList controller so this is gonna fail plan in order to recover that we create this above one.
+@😱KEEP_NOTE: this all data we send it into 🗃️model/user/[purchases];
+
+FollowStepByStep:
+
+ -🎗️Go and notice model/user purchases this is type of array we use push methode for that & inject code inside default one [] & let's create variable for that here which empty array;  
+ -🎗️From where this information is gonna come up 🤔🤨??
+  we'r gonna pass this purchases info'n from the user req.body this is where is gonna come up! would be pushing some info into that from where it's come up from fronted req.body.
+ -🎗️.order of req.boy first go on 🗃️model/user/[Order] & base on that act Then,There is multiple products which is going to comming so in the line no.90 to 94 in between in the req.body=> .order whatever products we've we'r gonna loop through that ll' pick up individual
+ information there we ll' create object from it pushing it into a purchases
+@KEEPNOTE:products is entire list in which the individual product came note Line not forEach
+-🎗️pass all info into purchase with respect .push
+------
+----@stored All this into a DB@---- 
+so since everything inside this 🗃️model/user so obiviously we need User model so let's first import that....
+?why we use that findOneAndUpdate so far it's been nothing in model/user
+     purchased array(🗃️model/user) but there is gonna the point where something is already 
+     there we don't want to overwrite this all info'n i.w we'r using.. if there
+     is nothing inside the arry just write that.
+
+    *{_id:req.profile._id} bring up from getUserById base on that we find;
+     
+    *{$push: {purchases:purchases}}
+     👆 
+     -🎗️what do you want to push inside this array(🗃️model/user) after
+      :so what info you want to pass on so i want to push 
+      on inside this array which is in the 🗃️models/user knon
+      as purchases we'r gonna say this update one thing use this object here ➡️ {purchase:purchases}⬅️first Array from model & 2nd array from here update with myArray talke about purchase don't mess first name
+      & we'r updating array 
+
+    ?{new: true} send me updated object one from DB not old one 
+    -🎗️The pass callback to pass updated value
+
+    
+@consclusion@!:
+  -pulled info from fronted
+  -looping throught it
+  -creating a object from it,
+  -storing this object into purchases empty array
+  -finally we'r using a model then finding and one update thing
+  -bases on some id,push,new:true
+  -handling a error part 
+
 
  */
