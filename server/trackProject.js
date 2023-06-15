@@ -304,7 +304,7 @@ VIA_req.auth we get id {
  base on this one we do further authentication process like isAuthenticated,isAdmin with that.
 
 
-'---------------------NEW-----------------------'
+'🥊🥊---------------------NEW-----------------------🥊🥊'
 
 @TITLE:->HOW TO WRITE CUSTOM MIDDLEWARE:
 @ABOUT[isAuthenticated,  isAdmin]
@@ -335,7 +335,7 @@ So it holds id onece after via check below API it could be anyid singin,signout 
 if ther role is zero then consider "regular user";
 if the role is 1 then consider "admin"
 
-'---------------------NEW-----------------------'
+'🥊🥊---------------------NEW-----------------------🥊🥊'
 
 @TITLE:-> what are param ??
 @ABOUT[]
@@ -351,7 +351,7 @@ we'r directly pull it from URL after middleware.
 
 
 
-'---------------------NEW-----------------------'
+'🥊🥊---------------------NEW-----------------------🥊🥊'
 
 @TITLE:-> -GET ID FROM PARAM-
 @ABOUT[🔺getUserById, 🔺getUser]
@@ -370,7 +370,7 @@ in this one we'r gonna exports so that params can handled. Need to pass id while
 So getUserById work with params & getUser work when somebuddy call this method we will get back "user" info;
 -see in getUserById : so since in this req.profile we got all the information what we needed so we can simply send a response back here in this getUser; we need atually some method to varify that;
 
-'---------------------NEW-----------------------'
+'🥊🥊---------------------NEW-----------------------🥊🥊'
 
 @TITLE:-> HANDLING USER ROUTE
 @ABOUT[🔺getUserById, 🔺getUser]
@@ -396,7 +396,7 @@ getting his profile he should be isSignein, isAuthenticated also so this is we i
 
 this all are middleware can insert anywhere 
 
-'---------------------NEW-----------------------'
+'🥊🥊---------------------NEW-----------------------🥊🥊'
 
 @TITLE:-> FIXING & TEASTING BUGS
 @ABOUT[🔺getUser]
@@ -421,7 +421,7 @@ So, this is all good now we can a request easily /user/:userId need to pass this
 
 🤦‍♂️Mistakely: we pass "===" so instead need to pas "==" because we are checking here for value not object becaz they are not same object itself that's why == double equal to
 
-'---------------------NEW-----------------------'
+'🥊🥊---------------------NEW-----------------------🥊🥊'
 
 @TITLE:-> LEARN TO UPDATE USER INFO
 @ABOUT: moreever like update route
@@ -454,7 +454,7 @@ POSTMAN_URL: 🔗✈️http://localhost:4000/api/user/6486efbd8fb8d6c3c3f45229
 
 
 
-'---------------------NEW-----------------------'
+'🥊🥊---------------------NEW-----------------------🥊🥊'
 
 @TITLE:-> USING POPULATE FROM OTHER COLLECTION
 @ABOUT: userPurchasedList
@@ -481,7 +481,7 @@ we need to pass two thing compulsaory
  -🎗️➕2nd is what are the field you want to bring in e.g like _id name email no extra comma(,) or anything.
 
  
-'---------------------NEW-----------------------'
+'🥊🥊---------------------NEW-----------------------🥊🥊'
 
 @TITLE:-> MIDDLEWARE TO UPDATE PURCHASE
 @ABOUT: pushOrderInPurchasedList
@@ -532,5 +532,31 @@ so since everything inside this 🗃️model/user so obiviously we need User mod
   -bases on some id,push,new:true
   -handling a error part 
 
+
+  '🥊🥊---------------------NEW-----------------------🥊🥊'
+
+@SECTION@: summer & winter collection - CATEGORY  
+@TITLE:-> GET CATEGORY FROM PARAM 
+@ABOUT: Moreover like an Parameters Extracter[id]
+@LOCATION:[🔺routes/category/,🔺controller/category/, ] 
+@REQUEST : PARAM 
+
+So far we've seen how to extrat single Parameters from URL & Now in this one discussed about extracting multiple Parameters from URL is almost same that previous one.
+@NEED to bring things in this 🗃️routes/category/
+-🎗️1st : auth[to check weather user authenticatae or not,login or not &😗KEEP_NOTE: only Admin should be allow to create category]
+-🎗️2nd : user[@sideNote: so far we've discussed ABOUT getUserById just exactly one previous section we've created couple of methods
+in model/user route specially getUserById bring 
+exactly this will be we've to extracting this
+one  whenever i've seen this getUserBy 
+id it just populated my req.profile and i can
+use whole bunch of thing & Id full info like name & all stuff the movement
+it see any kind of parameter it just get fire ]
+
+-So,How do i use this getUserById 🧐🧐??
+🗃️routes/user router just exact like that you do. so anyTime is gonna "userId" see in any Parameters it just gonna go ahead & populate my fields
+*as soon as you see this userId in parameter line 6{getUserById}
+it just go ahead & populate my profile
+➡️GO CONTROLLER
+-Now, so far we've seen user id Now i want to grabbed "category id" as well.
 
  */

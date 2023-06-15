@@ -6,6 +6,7 @@ const app = express();
 /*bring Up auth,user route */
 const authRoute = require("./routes/auth")
 const userRoute = require("./routes/user")
+const categoryRoute = require("./routes/category")
 
 
 /*Middleware Packages */
@@ -21,12 +22,12 @@ app.use(cors())
 /*API__SECTION */
 app.use("/api",authRoute);
 app.use("/api",userRoute);
+app.use("/api",categoryRoute);
 
 
 app.get("/",(req,res)=>{
     res.send("Hello")
 })
-
 
 const PORT = process.env.PORT || 4000
 app.listen(PORT,()=>{
