@@ -559,4 +559,88 @@ it just go ahead & populate my profile
 ➡️GO CONTROLLER
 -Now, so far we've seen user id Now i want to grabbed "category id" as well.
 
+
+
+
+'🥊🥊---------------------NEW-----------------------🥊🥊'
+@SECTION@: summer & winter collection - CATEGORY  
+@TITLE:-> CREATING A CATEGORY & 💹SAVING IT
+@ABOUT: Moreover like "create" category @HINT:->router.post("/category/create/:userId",
+@LOCATION:[🔺routes/category/,🔺controller/category/, ] 
+@REQUEST : post 
+
+@ROUTE
+in this session, we'r gonna creating category,it's pretty simple
+you just usually pass on string & that's all what we've to save it
+into DB but only selected user should be allow to create category in
+our case, it just gonna be admin only,it could be super admin also.
+😵@sideNote: we've save everything into Db with role 0 defalue there is
+no admin so far. we'r gonna do something twikky manually change value.
+
+-🎗️right now just assume we'r just gonna go in Dbs manually & just will change
+the value over there, surlly we can provide superAdmin as well can change 
+something & can provide a multiple admin let see this another time also for changing
+
+-🎗️it is comppulsary to validate user that'w 
+  we mention :userId belew & it might be getting now
+  why we'v got this above param becz i want to authenticate
+  that user validate or not is operation able to perform or not
+  that's why i've methode in belew createCategory then after just chck
+  isAdmin,isAuthenticat,isSignin 
+@Note:belew order isImportant 
+!!This one is only done by Admin if this Admin is success then we can 
+  performed it so opened cntrl/auth.js see admin see exports.isAdmin
+
+➡️GO CONTROLLER
+first we create a category then simply extracted that category by req.body; 
+-🎗️create new object(save in DB)
+
+
+'🥊🥊---------------------NEW-----------------------🥊🥊'
+@SECTION@: summer & winter collection - CATEGORY  
+@TITLE:-> GET ALL CATEGORIES AT ONCE(READ)  
+@ABOUT: 
+-🎗️router.get("/category/:categoryId", getCategory);
+-🎗️router.get("/categories", getAllCategory);
+@LOCATION:[🔺routes/category/,🔺controller/category/, ] 
+@REQUEST : GET  
+
+@ROUTE
+@we want to get an access of id so i want one particular id
+that will be based on unique id so will have getCategory method
+want to grab @getCategory,rather getAllCategory 
+this are 2 routes and 2 controllers.
+
+➡️GO CONTROLLER
+why Mention:categoryId so in order to grabbed one single category
+so it can  automatically fire up or which populates one thing in my body itself we've seen that go controller/category/ req.category = cate; from ""getCategoryById""
+
+
+🥊🥊---------------------NEW-----------------------🥊🥊'
+SECTION@: summer & winter collection - CATEGORY  
+@TITLE:->UPDATE THE COLLECTION
+@ABOUT: 
+-🎗️router.get("/category/:categoryId/:userId",isSignedIn,isAuthenticat,isAdmin updateCategory);
+@LOCATION:[🔺routes/category/,🔺controller/category/, ] 
+@REQUEST : PUT  
+
+@OVERVIEW@
+@ROUTE
+ So, How do we update
+   -Need::categoryId:
+    is anyone allow to upadate the category=> No, actually router.post route and update route is almost exactly same almost
+    :categoryId 1st grabbed this one then :userId this userId then i can
+    validate check isSign....,this :categoryId is being updated by this :userId(user) base on that we validate isSignedIn,isAuthenticat,isAdmin 
+
+➡️GO CONTROLLER  
+So,How do we change this updateCategory firstly i need to grabbed it So how do we grabbed,we just grabbed from ""req.category" that we'r sending
+-🎗️Now the req what'we'r having so far is gonna be updated only one thing which is in DATABASE category.name from(🗃️models/category) what actually you need to updated just only "name";
+-🎗️this req.category we'r able to grabbed it due to of middleware
+over there see at the top getCategoryById note we are able to 
+grabbed from parameter then we populate this belew category from req.category
+-category.name = req.body.name this one is able to grabbed from fronted 
+-sence this req.category is already an object of dbs i can directly fire up now
+if you remember from top object is coming from dbs i.w category.save();
+-🎗️Then, simply go ahead update that since this "req.category" is already an object of DATABASE just simply fire a save method error & all stuff;
+
  */
