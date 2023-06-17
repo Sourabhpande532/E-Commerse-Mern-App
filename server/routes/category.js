@@ -7,9 +7,13 @@ const {
   getCategory,
   getAllCategory,
   updateCategory,
+  removeCategory,
 } = require("../controller/category");
 
+// AUTH MIDDLEWARE
 const { isSignedIn, isAdmin, isAuthenticated } = require("../controller/auth");
+
+// USER ID 
 const { getUserById } = require("../controller/user");
 
 router.param("userId", getUserById);
@@ -25,6 +29,7 @@ router.post(
   isAdmin,
   createCategory
 );
+/*🔝🔝@😱KEEP_NOTE: Before TEASTING route role shold be 1(Admin)*/
 
 //GET ALL CATEGORIES AT ONCE(READ)
 router.get("/category/:categoryId", getCategory);
@@ -39,4 +44,12 @@ router.put(
   updateCategory
 );
 
+/*PERFORM A DELETE OPERATION*/
+router.delete(
+  "/category/:categoryId/:userId",
+  isSignedIn,
+  isAuthenticated,
+  isAdmin,
+  removeCategory
+);
 module.exports = router;

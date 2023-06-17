@@ -108,7 +108,6 @@ exports.isAuthenticated = (req, res, next) => {
   next();
 };
 
-
 //CUSTOM MIDDLEWARE(isAdmin);
 exports.isAdmin = (req, res, next) => {
   if(req.profile.role === 0){

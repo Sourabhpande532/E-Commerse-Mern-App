@@ -540,6 +540,7 @@ so since everything inside this 🗃️model/user so obiviously we need User mod
 @ABOUT: Moreover like an Parameters Extracter[id]
 @LOCATION:[🔺routes/category/,🔺controller/category/, ] 
 @REQUEST : PARAM 
+!@😗KEEP_NOTE: creating category only performed by Admin only Make sure All "CRUD" functionality.only for role 1 which is Admin or manually updated from compass for "practice"
 
 So far we've seen how to extrat single Parameters from URL & Now in this one discussed about extracting multiple Parameters from URL is almost same that previous one.
 @NEED to bring things in this 🗃️routes/category/
@@ -557,7 +558,7 @@ it see any kind of parameter it just get fire ]
 *as soon as you see this userId in parameter line 6{getUserById}
 it just go ahead & populate my profile
 ➡️GO CONTROLLER
--Now, so far we've seen user id Now i want to grabbed "category id" as well.
+-Now, so far we've seen user id Now i want to grabbed "category id" as well in the same getUserById formate.
 
 
 
@@ -578,9 +579,9 @@ our case, it just gonna be admin only,it could be super admin also.
 no admin so far. we'r gonna do something twikky manually change value.
 
 -🎗️right now just assume we'r just gonna go in Dbs manually & just will change
-the value over there, surlly we can provide superAdmin as well can change 
+the value over there, 0 to '1' surlly we can provide superAdmin as well can change 
 something & can provide a multiple admin let see this another time also for changing
-
+@ROUTE
 -🎗️it is comppulsary to validate user that'w 
   we mention :userId belew & it might be getting now
   why we'v got this above param becz i want to authenticate
@@ -594,6 +595,7 @@ something & can provide a multiple admin let see this another time also for chan
 ➡️GO CONTROLLER
 first we create a category then simply extracted that category by req.body; 
 -🎗️create new object(save in DB)
+-!IMP:😑MAKE_SURE:Need to pass json response in object like res.json({category}) that next time we can access anything like category._id,category.name 
 
 
 '🥊🥊---------------------NEW-----------------------🥊🥊'
@@ -604,6 +606,7 @@ first we create a category then simply extracted that category by req.body;
 -🎗️router.get("/categories", getAllCategory);
 @LOCATION:[🔺routes/category/,🔺controller/category/, ] 
 @REQUEST : GET  
+@POSTMAN URL: http://localhost:4000/api/category/648d8fd44af2f06630194a30
 
 @ROUTE
 @we want to get an access of id so i want one particular id
@@ -614,6 +617,7 @@ this are 2 routes and 2 controllers.
 ➡️GO CONTROLLER
 why Mention:categoryId so in order to grabbed one single category
 so it can  automatically fire up or which populates one thing in my body itself we've seen that go controller/category/ req.category = cate; from ""getCategoryById""
+-NEED TO MENTION CREATING CATEGORIES ID OVER THERE instead :"categoryId" Which populate from getCategoryById;
 
 
 🥊🥊---------------------NEW-----------------------🥊🥊'
@@ -633,7 +637,7 @@ SECTION@: summer & winter collection - CATEGORY
     validate check isSign....,this :categoryId is being updated by this :userId(user) base on that we validate isSignedIn,isAuthenticat,isAdmin 
 
 ➡️GO CONTROLLER  
-So,How do we change this updateCategory firstly i need to grabbed it So how do we grabbed,we just grabbed from ""req.category" that we'r sending
+So,How do we change this updateCategory firstly i need to grabbed it So how do we grabbed,we just grabbed from ""req.category" that we've already send in while ""createCategory"" see this route @LOCATION:->controller/category/ in the formate of json see you'll get name know as "category" like res.json({category});
 -🎗️Now the req what'we'r having so far is gonna be updated only one thing which is in DATABASE category.name from(🗃️models/category) what actually you need to updated just only "name";
 -🎗️this req.category we'r able to grabbed it due to of middleware
 over there see at the top getCategoryById note we are able to 
@@ -643,4 +647,24 @@ grabbed from parameter then we populate this belew category from req.category
 if you remember from top object is coming from dbs i.w category.save();
 -🎗️Then, simply go ahead update that since this "req.category" is already an object of DATABASE just simply fire a save method error & all stuff;
 
+
+🥊🥊---------------------NEW-----------------------🥊🥊'
+SECTION@: summer & winter collection - CATEGORY  
+@TITLE:->PERFORM A DELETE OPERATION
+@ABOUT: 
+-router.get("/category/:categoryId/:userId",isSignedIn,isAuthenticat,isAdmin removeCategoryCategory);
+
+@LOCATION:[🔺routes/category/,🔺controller/category/, ] 
+@REQUEST : DELETE
+
+-🎗️Tend to sometime avoid the word delete word bcz 
+delte is propratery operation being performed by mongo
+so i don't really call my category delete as ctrlr it might create
+some of the issue i.w having long name like remove...anything
+
+-🎗️@why? we'r able to grabbed this const category = req.category; 🤔??
+the ans should be middleware becz it's extracting the things from the parametere see ""getCategoryById""
+
+-🎗️*note Remove is operation given to us by mongoose 
+it return two thing while interacting with DATABASE first is "err" & 2nd is "category" Make sure keep a note this category is not from DBs it is deleted one.
  */

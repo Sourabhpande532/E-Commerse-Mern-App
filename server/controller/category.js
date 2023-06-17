@@ -23,7 +23,11 @@ exports.createCategory = async (req, res) => {
   try {
     const category = new Category(req.body);
     await category.save();
-    res.json({ category });
+    res.json({
+      category,
+      success: true,
+      message: "Successfully created category",
+    });
   } catch (err) {
     return res.status(400).json({
       error: "NOT able to save category in DB",
@@ -52,17 +56,32 @@ exports.getAllCategory = async (req, res) => {
 };
 
 // UPDATE THE COLLECTION
-exports.updateCategory = (req, res) => {
-  const category = req.category;
-  category.name = req.body.name;
+exports.updateCategory = async (req, res) => {
+  try {
+    const category = req.category;
+    category.name = req.body.name;
 
-  category.save((err, updatedCategory) => {
-    if (err) {
-      return res.status(400).json({
-        error: "Failed to update category"
-      });
-    }
+    const updatedCategory = await category.save();
     res.json(updatedCategory);
-  });
+  } catch (err) {
+    res.status(400).json({
+      error: "Failed to update category",
+    });
+  }
 };
 
+/*PERFORM A DELETE OPERATION*/
+exports.removeCategory = async (req, res) => {
+  try {
+    const category = req.category;
+    await category.deleteOne();
+    res.json({
+      message: `Successfully deleted category: ${category}`,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(400).json({
+      error: "Failed to delete the category",
+    });
+  }
+};
