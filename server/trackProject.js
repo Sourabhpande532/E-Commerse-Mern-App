@@ -627,6 +627,7 @@ SECTION@: summer & winter collection - CATEGORY
 -🎗️router.get("/category/:categoryId/:userId",isSignedIn,isAuthenticat,isAdmin updateCategory);
 @LOCATION:[🔺routes/category/,🔺controller/category/, ] 
 @REQUEST : PUT  
+@POSTMAN URL: http://localhost:4000/api/category/648d8fd44af2f06630194a30/6486efbd8fb8d6c3c3f45229
 
 @OVERVIEW@
 @ROUTE
@@ -667,4 +668,48 @@ the ans should be middleware becz it's extracting the things from the parametere
 
 -🎗️*note Remove is operation given to us by mongoose 
 it return two thing while interacting with DATABASE first is "err" & 2nd is "category" Make sure keep a note this category is not from DBs it is deleted one.
+
+
+
+'🥊🥊---------------------NEW-----------------------🥊🥊'
+
+@SECTION@: - ADDING T-SHRT TO OUR BACKEND(PRODUCT (T-SHRT)-SECTION) 
+@TITLE:-> GET PRODUCT BY ID 
+@ABOUT: ABOUT getProductById
+@LOCATION:[🔺routes/product/,🔺controller/product/, ] 
+@REQUEST :  PARAM
+
+@ROUTE
+Invite getUserById(for userInfo) && getProductById(for extrack product Id)
+
+@CONTROLLER
+see after findById stuff why? for that
+want show you something for that we diffenatly can
+grabbed all the product here but want to populate based
+on category as well it is not at all compulsary(later discuss in case you'r confused you can also remove if you want) to do it here but again we can change it as many methode as we like it may be sort,may be populate....etc in this case we use sort
+
+
+'🥊🥊---------------------NEW-----------------------🥊🥊'
+
+@SECTION@: - ADDING T-SHRT TO OUR BACKEND(PRODUCT (T-SHRT)-SECTION) 
+@TITLE:-> 💹SAVING TSHRT IN MONGO AND TSHRT ASSETS
+@ABOUT: ABOUT 
+@LOCATION:[🔺routes/product/,🔺controller/product/, ] 
+@REQUEST : POST
+@EXPORT/INVITE/REQUIRE: formidable, _(lodash),fs
+
+
+After,
+we'r gonna focus on createProduct is gonna take advantage of forms data so we've to expect thing on base on that.As per the documentation; 
+Ref: ✈️🔗https://www.npmjs.com/package/formidable
+
+-🎗️The very first thing we saw in docs is that cration of form using that new formidable.IncomingForm() now we'v objet this form
+-🎗️As soon as you'v this object form it expect 3 parameters
+  🔺1st- error, 
+  🔺 2nd- filds(name,description,price...)
+  🔺 3rd one files.
+  why 🤔🤨? is true form.keepExtensions = true;
+  its because desired to save files weather the files are png,or jpg formate
+-🎗️parse form & pass 3 parameter either receive error or weather file and field;
+-🎗️check for error IF CONDITION(If ther person is coming here in error probably probem in file)
  */
