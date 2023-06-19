@@ -697,7 +697,7 @@ on category as well it is not at all compulsary(later discuss in case you'r conf
 @LOCATION:[🔺routes/product/,🔺controller/product/, ] 
 @REQUEST : POST
 @EXPORT/INVITE/REQUIRE: formidable, _(lodash),fs
-
+@KEEP_NOTE: BEFOURE CHECK POSTMAN YOU SUPPOSE TO BE ADMIN & SEND INFORMATION IN FORM-DATA IN POSTMAN
 
 After,
 we'r gonna focus on createProduct is gonna take advantage of forms data so we've to expect thing on base on that.As per the documentation; 
@@ -712,4 +712,41 @@ Ref: ✈️🔗https://www.npmjs.com/package/formidable
   its because desired to save files weather the files are png,or jpg formate
 -🎗️parse form & pass 3 parameter either receive error or weather file and field;
 -🎗️check for error IF CONDITION(If ther person is coming here in error probably probem in file)
+
+------
+in case, after there is no come back to "fields"  let first PUT restication on field let assume all filds are great & we'r able to created further ""fields"" on base on that e.g let product = new Product(fields);
+assuming & relyig that user is passing information in correct way in this field then we'r gonna put a restication on that ..but now
+-🎗️handles files So how do we handled let
+ >> first check "size of file"
+ >> handle file here is almost exatly same like mp3 handled
+    make sure we'r fetch photo from 🗃️model/product/ here models name like photo
+    3000000 it's mb & this if statment is managing my photos
+
+-🎗️including the file in product
+ >> Make sure we'r this fetch photo url from 🗃️model/product/ product.photo.data & this is where you need to mention entire full path of file so for that let's use "fs" it has lot more methode like readfile & inside one pass formidable file path to grabbed the exact path of it.
+ >> talk about 2ns line Also we'v to mention contentType(type can be anything like png,jpg) here for the DATABASE
+ >> technically This below two lines save the data into dbs
+ >> Now the product is getting ready for save
+
+ref: ✈️🔗https://stackoverflow.com/questions/73308891/node-fs-error-the-path-argument-must-be-of-type-string-or-an-instance-of-buff
+ 
+-🎗️Save to DB Photos
+-@CONCLUSION: 
+ -Declered the form wiht IncomingForm
+ -parse the form with 3 filds HANDLING is almost like text
+ -handle file,include file,save to DATABASE
+
+ -------
+-🎗️ PUT RESTICATION ON FIELDS(last portion)
+ what is the thing happend in product we'r having filds see befoure creating entry in DB need to put some restication over there 
+     -firstly want destructuring the fields befour one
+     -Fields like sinup,signin for name description belew one
+     -sold is not gonna to coming up here from user itself sold is 
+      something we'r going to putting it up as a middleware so everytime
+      stock is being less in numbers that means sail is will automatically 
+      higher so we'll designed a middleware as soon as tshrt is being sold
+      out we'r gonna reduce the stock & we'r gonna increse the stock.
+
+🤨KEEPNOTE: in the fronted we load the ""category"" from DATABASE & only allow user should be selectable
+
  */

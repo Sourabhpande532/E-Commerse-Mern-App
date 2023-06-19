@@ -151,4 +151,3 @@ exports.pushOrderInPurchaseList = async (req, res, next) => {
   }
 };
 
-
