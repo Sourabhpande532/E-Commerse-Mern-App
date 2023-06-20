@@ -5,6 +5,10 @@ const {
   getProductById,
   createProduct,
   getProduct,
+  photo,
+  deleteProduct,
+  updateProduct,
+  getAllMethode
 } = require("../controller/product");
 const { isSignedIn, isAuthenticated, isAdmin } = require("../controller/auth");
 const { getUserById } = require("../controller/user");
@@ -27,8 +31,37 @@ router.post(
 );
 
 /*
--when we createProduct,so productId automatically generated base on that
- */
+READ:->SOME OPTIMISATION VIA BINARY DATA 
+when we createProduct,so productId automatically generated base on that*/
+
 router.get("/product/:productId", getProduct);
+
+// MIDDLEWARE
+router.get("/product/photo/:productId", photo); 
+
+
+//DELETE AND UPDATE TSHRT
+router.delete(
+  "/product/:productId/:userId",
+  isSignedIn,
+  isAuthenticated,
+  isAdmin,
+  deleteProduct,
+);
+
+// UPDATE AND DELETE TSHRT
+router.put(
+  "/product/:productId/:userId",
+  isSignedIn,
+  isAuthenticated,
+  isAdmin,
+  updateProduct,
+);
+
+//LISTING ROUTE & GET ALL PRODUCTS
+router.get("/products", getAllMethode);
+
+
+
 
 module.exports = router;

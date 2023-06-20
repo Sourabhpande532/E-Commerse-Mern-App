@@ -697,7 +697,7 @@ on category as well it is not at all compulsary(later discuss in case you'r conf
 @LOCATION:[🔺routes/product/,🔺controller/product/, ] 
 @REQUEST : POST
 @EXPORT/INVITE/REQUIRE: formidable, _(lodash),fs
-@KEEP_NOTE: BEFOURE CHECK POSTMAN YOU SUPPOSE TO BE ADMIN & SEND INFORMATION IN FORM-DATA IN POSTMAN
+@KEEP_NOTE: BEFOURE CHECK POSTMAN YOU SUPPOSE TO BE ADMIN & SIGNIN & SEND INFORMATION IN FORM-DATA IN POSTMAN
 
 After,
 we'r gonna focus on createProduct is gonna take advantage of forms data so we've to expect thing on base on that.As per the documentation; 
@@ -748,5 +748,88 @@ ref: ✈️🔗https://stackoverflow.com/questions/73308891/node-fs-error-the-pa
       out we'r gonna reduce the stock & we'r gonna increse the stock.
 
 🤨KEEPNOTE: in the fronted we load the ""category"" from DATABASE & only allow user should be selectable
+
+
+'🥊🥊---------------------NEW-----------------------🥊🥊'
+
+@SECTION@: - ADDING T-SHRT TO OUR BACKEND(PRODUCT (T-SHRT)-SECTION) 
+@TITLE:-> READ:->SOME OPTIMISATION VIA BINARY DATA && MIDDLEWARE
+@ABOUT: getProduct,photo 
+@LOCATION:[🔺routes/product/,🔺controller/product/, ] 
+@REQUEST : GET, GET
+
+@OVERVIEW@
+Go CONTROLLER 😗
+Note:
+  -🎗️line return.res..here is a catch mostly applicationn
+  designed in a such away we'r gonna notice if you'r also 
+  serving something like mp3 or may be photos there are not being served
+  directly into get methode return.res..line becz this mp3, or photos can
+  be really tricky and bulkey to grabbed from the database so what they
+  do just in this case just like put undefined on req.product.photo that not shown in fronted.
+  -🎗️it does'nt give it to back to user.
+  -🎗️the advantage of this is gonna be this return.res ... line quick parse and give you quick response 
+  
+  This is for exports.photo
+  but what About photos?? might be you'r thinking.
+  let see => what we can do here is we can put up a
+  "middleware" which in backend As we'r firing up the 
+  fronted request, as soon as we does that this line
+  return res. is parsed rest of the thing while the photo
+  can load on background. 
+  -🎗️This is a safe chaining(safetyNetCheck)(swift use)
+
+
+'🥊🥊---------------------NEW-----------------------🥊🥊'
+
+@SECTION@: - ADDING T-SHRT TO OUR BACKEND(PRODUCT (T-SHRT)-SECTION) 
+@TITLE:-> UPDATE AND DELETE TSHRT
+@ABOUT: deleteProduct,updateProduct 
+@LOCATION:[🔺routes/product/,🔺controller/product/, ] 
+@REQUEST : DELETE, PUT
+@KEEP_NOTE: BEFOURE CHECK POSTMAN YOU SUPPOSE TO BE ADMIN & SIGNIN & SEND INFORMATION IN FORM-DATA IN POSTMAN
+
+UPDATE one
+Plans::=>what we'r gonnna to do in update section fields
+         just like we'r having all the fields in UI to save
+         a product similarly we'r gonna have same exact UI
+         for the updation of product.what'll do as soon as 
+         the updation page is getting load we'r gonna pull up the information
+         from database we fill up all the fileds with that informtion as soon as
+         the user hit save we'r gonna perform save operation 
+         on top of that.
+
+UPDATION CODE(CONTROLLER) 
+lodash - now we update this one how we'r gonna
+       update this we'r gonna just simply called product + Now the things which 
+       is going to come from Lodash above one => we've got this lodash which help
+       us working with route objects, creating this new object array and stuff like
+       that
+       _lodash it has variety of methods like extent(methode) what it does? 
+        so it takes the exiting value in the object that you'r having and it just
+        extend this value means all the updation value get involve there as well & it
+        also update the value.
+        _.extent it requires two things first give me fields that i'm looking
+        it for product is gonna do that + then , we can directly takes from
+        fields which is in the formadable & now this fields are gonna be updated
+        inside this "product" what we mention first in extent that's wy we'r having
+        this lodash Note: in case this look like bulkey to you there are other methode like tripple dot(...)
+        we can do that ,we can do a hack over there buy that's all fine  
+   
+
+'🥊🥊---------------------NEW-----------------------🥊🥊'
+
+@SECTION@: - ADDING T-SHRT TO OUR BACKEND(PRODUCT (T-SHRT)-SECTION) 
+@TITLE:-> GET ALL PRODUCTS
+@ABOUT: LISTING ROUTE deleteProduct,updateProduct 
+@LOCATION:[🔺routes/product/,🔺controller/product/, ] 
+@REQUEST : GET
+@KEEP_NOTE: BEFOURE CHECK POSTMAN YOU SUPPOSE TO BE ADMIN & SIGNIN & SEND INFORMATION IN FORM-DATA IN POSTMAN
+         
+-pass async/await 
+-pass query to customizing data base on either user or default one 
+-sort data either in ascending or decending
+-pass select(-ve) Negative sign mean Don't want any data 
+-pass limit
 
  */
