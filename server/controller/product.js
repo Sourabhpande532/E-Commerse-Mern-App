@@ -76,7 +76,7 @@ exports.getProduct = (req, res) => {
   return res.json(req.product);
 };
 
-/*MIDDLEWARE */
+/*PHOTO MIDDLEWARE */
 exports.photo = (req, res, next) => {
   if (req.product.photo.data) {
     res.set("Content-Type", req.product.photo.contentType);
@@ -166,3 +166,36 @@ exports.getAllMethode = async (req, res) => {
   }
 };
 
+// TO GET ALL DISTINCT CATEGORIES
+exports.getAllUniqueCategories = async (req, res) => {
+  await Product.distinct("category", {}, (err, category) => {
+    if (err) {
+      return res.status(400).json({
+        error: "No category found",
+      });
+    }
+    res.json(category);
+  });
+};
+
+// MIDDLEWARE(UPDATE YOUR INVENTORY)
+exports.updateStock = async (req, res, next) => {
+  let myOperation = req.body.order.products.map((prod) => {
+    return {
+      updateOne: {
+        filter: { _id: prod._id },
+        update: { $inc: { stock: -prod.count, sold: +prod.count } },
+      },
+    };
+  });
+  //it expect three things here read docs
+  await Product.bulkWrite(myOperation, {}, (err, products) => {
+    if (err) {
+      return res.status(400).json({
+        error:
+          "Bulk Operation Failed: why we call this we perform two operation here i.w",
+      });
+    }
+    next();
+  });
+};

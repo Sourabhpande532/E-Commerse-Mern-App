@@ -8,7 +8,8 @@ const {
   photo,
   deleteProduct,
   updateProduct,
-  getAllMethode
+  getAllMethode,
+  getAllUniqueCategories
 } = require("../controller/product");
 const { isSignedIn, isAuthenticated, isAdmin } = require("../controller/auth");
 const { getUserById } = require("../controller/user");
@@ -61,6 +62,8 @@ router.put(
 //LISTING ROUTE & GET ALL PRODUCTS
 router.get("/products", getAllMethode);
 
+// TO GET ALL DISTINCT CATEGORIES
+router.get("/products/categories", getAllUniqueCategories)   
 
 
 

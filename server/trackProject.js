@@ -757,6 +757,7 @@ ref: ✈️🔗https://stackoverflow.com/questions/73308891/node-fs-error-the-pa
 @ABOUT: getProduct,photo 
 @LOCATION:[🔺routes/product/,🔺controller/product/, ] 
 @REQUEST : GET, GET
+@KEEP_NOTE: IF 🤦‍♂️Mistakely in getProductById middleware not mention .populate The category Data which you created will not rendered !! Need to populate data in getProductById Middleware;
 
 @OVERVIEW@
 Go CONTROLLER 😗
@@ -820,7 +821,7 @@ lodash - now we update this one how we'r gonna
 '🥊🥊---------------------NEW-----------------------🥊🥊'
 
 @SECTION@: - ADDING T-SHRT TO OUR BACKEND(PRODUCT (T-SHRT)-SECTION) 
-@TITLE:-> GET ALL PRODUCTS
+@TITLE:-> GET ALL PRODUCTS (LISTING ROUTE with Custom Querry)
 @ABOUT: LISTING ROUTE deleteProduct,updateProduct 
 @LOCATION:[🔺routes/product/,🔺controller/product/, ] 
 @REQUEST : GET
@@ -831,5 +832,76 @@ lodash - now we update this one how we'r gonna
 -sort data either in ascending or decending
 -pass select(-ve) Negative sign mean Don't want any data 
 -pass limit
+
+
+
+
+
+
+'🥊🥊---------------------NEW-----------------------🥊🥊'
+
+@SECTION@: - ADDING T-SHRT TO OUR BACKEND(PRODUCT (T-SHRT)-SECTION) 
+@TITLE:-> UPDATE YOUR INVENTORY(MIDDLEWARE)
+@ABOUT: STOCK AND SOLD (FocusOn:Reduce stock & increse Sold) 
+@LOCATION:[🔺controller/product/, ] 
+@REQUEST : 
+@KEEP_NOTE: BEFOURE CHECK POSTMAN YOU SUPPOSE TO BE ADMIN & SIGNIN & SEND INFORMATION IN FORM-DATA IN POSTMAN
+
+Ref:🔗 https://mongoosejs.com/docs/api/model.html#Model.bulkWrite()
+
+@OVERVIEW@ 
+-🎗️Talk about some of the OPERATION performed by MIDDLEWARE
+-🎗️ +-Stock & +-sold we've to perform two thing at same time this one
+-🎗️Need 2 middleware one chage for "stock" & seconde change for "sold"
+-🎗️Need one method i.e bulkWrite see above link Ref 
+-🎗️it has 3 parameter need to pass 
+ 1st which op want to perform 
+ 2nd is options 
+ 3rd is callback 
+-🎗️base on id or anything we nedd find it to perform update & delete op for that mongoose provide option "filter" find that   
+-🎗️write MIDDLEWARE for that "updateStock"
+ 😗KEEP_NOTE: NO NEED ROUTE we mentions at fronted 
+-🎗️By Looping trough you get many product want to reduce stock & increse sold 
+-🥲Remember go on above link & see we'r performing insertOne operation(op) by the creating this one for every product we return & use in "bulkWrite";
+  -🎗️find out product base on filter methode (id or x)
+  -🎗️perform update: op on stock & sold
+   Note: .count throw from fronted side 
+  -🎗️pass it into Product.bulkWrite with 3 things 
+
+
+
+
+'🥊🥊---------------------NEW-----------------------🥊🥊'
+
+@SECTION@: - ADDING T-SHRT TO OUR BACKEND(PRODUCT (T-SHRT)-SECTION) 
+@TITLE:-> TO GET ALL DISTINCT CATEGORIES
+@ABOUT: find unique Category (getAllUniqueCategories)
+@LOCATION:[🔺controller/product/, routes/product ] 
+@REQUEST : GET 
+@KEEP_NOTE: BEFOURE CHECK POSTMAN YOU SUPPOSE TO BE ADMIN & SIGNIN & SEND INFORMATION IN FORM-DATA IN POSTMAN
+
+@OVERVIEW@ 
+@about:list category
+@here it was my idea when i was desining this in my Admin pannel
+ user will be able to create a product but obiviously he needs to 
+ create category as well so he need to select as a category. now i 
+ won't allow him to write the category becz it might create some of
+ the mistake here so rather i would like to populate this category in 
+ a advance so in the fronted i'll just display this category so i need a methods
+ on which i can just grabbed all the category all the distinct categoryes 
+ no repition is there & i can see all of this stuff apart from this it can be
+ use in defferent place.
+
+ Go CONTROLLER ➡️ 
+  editing backend again when we will work on fronted then
+  we'll realize the things. ok moving forword.
+  So, how we can get all unique category we have simpley 
+  model with us 
+
+  @Product: Nd we want to select field on that intead of findBy or find
+   we have unique methods distinct which filter out unique value or category 
+
+  Ref:✈️🔗 https://mongoosejs.com/docs/api/model.html#model_Model-distinct
+  again it takes three parameter first is fields(which model filed want to upadate & base on find unique category), options(), and callback
 
  */
