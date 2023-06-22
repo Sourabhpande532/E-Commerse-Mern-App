@@ -8,6 +8,7 @@ const authRoute = require("./routes/auth")
 const userRoute = require("./routes/user")
 const categoryRoute = require("./routes/category")
 const productRoute = require("./routes/product")
+const orderRoute = require("./routes/order")
 
 
 /*Middleware Packages */
@@ -25,6 +26,7 @@ app.use("/api",authRoute);
 app.use("/api",userRoute);
 app.use("/api",categoryRoute);
 app.use("/api",productRoute);
+app.use("/api",orderRoute);
 
 
 app.get("/",(req,res)=>{

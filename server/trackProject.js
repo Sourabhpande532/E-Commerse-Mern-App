@@ -757,7 +757,7 @@ ref: ✈️🔗https://stackoverflow.com/questions/73308891/node-fs-error-the-pa
 @ABOUT: getProduct,photo 
 @LOCATION:[🔺routes/product/,🔺controller/product/, ] 
 @REQUEST : GET, GET
-@KEEP_NOTE: IF 🤦‍♂️Mistakely in getProductById middleware not mention .populate The category Data which you created will not rendered !! Need to populate data in getProductById Middleware;
+@KEEP_NOTE: IF 🤦‍♂️Mistakely in getProductById middleware not mention ".populate" The category Data which you created will not rendered !! Need to populate data in getProductById Middleware;
 
 @OVERVIEW@
 Go CONTROLLER 😗
@@ -904,4 +904,15 @@ Ref:🔗 https://mongoosejs.com/docs/api/model.html#Model.bulkWrite()
   Ref:✈️🔗 https://mongoosejs.com/docs/api/model.html#model_Model-distinct
   again it takes three parameter first is fields(which model filed want to upadate & base on find unique category), options(), and callback
 
+
+'🥊🥊---------------------NEW-----------------------🥊🥊'
+
+@SECTION@: - PLACING THE ORDER 
+@TITLE:-> GET ORDER BY ID
+@ABOUT: 
+@LOCATION:[🔺routes/product,🔺controller/product/ ] 
+@REQUEST :  
+@KEEP_NOTE: BEFOURE CHECK POSTMAN YOU SUPPOSE TO BE ADMIN & SIGNIN & SEND INFORMATION IN FORM-DATA IN POSTMAN
+
+@OVERVIEW@ 
  */

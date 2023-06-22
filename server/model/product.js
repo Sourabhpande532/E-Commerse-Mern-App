@@ -25,6 +25,7 @@ const productSchema = new mongoose.Schema(
     
     /**********************************************************
     Link with category.js It's concept of Mongoose Populate || Mongoose refference and populate go and explore document
+    @KEEP_NOTE: NEED To populate this category in getProductById MIDDLEWARE in order to render
     *************************************************************/
     
     category: {
