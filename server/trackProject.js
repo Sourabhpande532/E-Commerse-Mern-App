@@ -908,11 +908,62 @@ Ref:🔗 https://mongoosejs.com/docs/api/model.html#Model.bulkWrite()
 '🥊🥊---------------------NEW-----------------------🥊🥊'
 
 @SECTION@: - PLACING THE ORDER 
-@TITLE:-> GET ORDER BY ID
-@ABOUT: 
-@LOCATION:[🔺routes/product,🔺controller/product/ ] 
-@REQUEST :  
+@TITLE:-> GET ORDER BY ID & CREATE AN ORDER & ENUM
+ 
+@ABOUT: getOrderById,createOrder
+@LOCATION:[🔺routes/order,🔺controller/order/ ] 
+@REQUEST : PARAM, GET 
 @KEEP_NOTE: BEFOURE CHECK POSTMAN YOU SUPPOSE TO BE ADMIN & SIGNIN & SEND INFORMATION IN FORM-DATA IN POSTMAN
 
 @OVERVIEW@ 
+ @@CREATE AN ORDER@@
+➡️@CONTROLLER
+while crating a order there is field you'r gonna notice in 🗃️model/order which is user which is based
+on "User" Model line no. 23 at  let's create methods in controller
+
+in this createMethode method i want to use req.profile why ??
+told just dependant on "User" see above 
+@req.body.order.user so this all is the method that i've defined
+in models that is base on "User" so i can simpley go ahead & write req.profile 
+because this profile is being populated by my params which is 🗃️"route/order"
+-@further process create a order with DB by using New
+crate a variable for which is order & this gonna be a object
+from coming it up from Order & we can just simpley populate(req.body.order)
+so that's ok. 
+Now, since this is mongoose object now this order has a acces of save which return
+error.
+
+➡️@ROUTE 
+Strategies for create route
+ofCourse since we'r populating everything from user 
+model so i need a "/userId" as well Now interested stuff begin
+adding a middleware Accept Admin use two isSingn,isAuthe because
+becaus anybudyy can place/purchase order.
+
+@pushOrderInPurchaseList
+-anther thing i want to put up i want to push the order into purchase list.
+Once the user being purchase to push my into purchase list.
+@updateStock
+Then, I want to update my stock as well so gonna copy this updateStock & 
+once the stock is being updated then i'm gonna simply fire up my methods
+which is gonna be
+@createOrder.
+
+@conclude: The region i'm doing this in the order because i'm assuming that order
+has been successfully it mean The ammount has successfully deducted from a use
+
+
+➡️@ABOUT: ENUM 
+@Ideabehind(status"enum")
+ firstly go on project notes in your book And read about ennum & then read docs
+ Ref:✈️🔗 https://masteringjs.io/tutorials/mongoose/enum#:~:text=May%2023%2C%202022,you%20try%20to%20save()%20.
+
+ we'r gonna get it as a ennum we'r gona selcting value from it The type should be !"string"
+ then choose default As soon as Value we'll get that time will use
+ Then go to routes/order.js read //Read comment then go to contrler/order & check getAllOrders
+ Note: This will clear all things in fronted one.
+
+
+ H.W : Lodash
+  https://www.youtube.com/watch?v=BjXq1MWXgpE&ab_channel=CoderDost
  */
