@@ -34,3 +34,35 @@ exports.createOrder = async (req, res) => {
   }
 };
 
+// GET ALL ORDER
+exports.getAllOrders = async (req, res) => {
+  try {
+    const orders = await Order.find().populate("user", "_id name");
+    res.json(orders);
+  } catch (err) {
+    res.status(400).json({
+      error: "No Order found in DB",
+    });
+  }
+};
+
+//ORDER STATUS
+exports.getOrderStatus = (req, res) => {
+  res.json(Order.schema.path("status").enumValues);
+};
+
+//UPDATE THE ORDER STATUS
+exports.updateStatus = async (req, res) => {
+  try {
+    const updatedOrder = await Order.findByIdAndUpdate(
+      req.body.orderId,
+      { $set: { status: req.body.status } },
+      { new: true }
+    );
+    res.json(updatedOrder);
+  } catch (err) {
+    res.status(400).json({
+      error: "Cannot update order status",
+    });
+  }
+};
