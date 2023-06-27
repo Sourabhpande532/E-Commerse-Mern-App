@@ -168,15 +168,16 @@ exports.getAllMethode = async (req, res) => {
 
 // TO GET ALL DISTINCT CATEGORIES
 exports.getAllUniqueCategories = async (req, res) => {
-  await Product.distinct("category", {}, (err, category) => {
-    if (err) {
-      return res.status(400).json({
-        error: "No category found",
-      });
-    }
-    res.json(category);
-  });
+  try {
+    const categories = await Product.distinct("category");
+    res.json(categories);
+  } catch (err) {
+    res.status(400).json({
+      error: "No category found",
+    });
+  }
 };
+
 
 // MIDDLEWARE(UPDATE YOUR INVENTORY)
 exports.updateStock = async (req, res, next) => {

@@ -293,7 +293,8 @@ lodash - now we update this one how we'r gonna
 @LOCATION:[🔺routes/product/,🔺controller/product/, ] 
 @REQUEST : GET
 @KEEP_NOTE: BEFOURE CHECK POSTMAN YOU SUPPOSE TO BE ADMIN & SIGNIN & SEND INFORMATION IN FORM-DATA IN POSTMAN
-         
+     
+Here we get all product list what we create previously!!
 -pass async/await 
 -pass query to customizing data base on either user or default one 
 -sort data either in ascending or decending
