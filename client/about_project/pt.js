@@ -47,7 +47,7 @@ the Base.
 '🥊🥊---------------------NEW-----------------------🥊🥊'
 
 @SECTION@: - NAVIGATION & AUTHENTICATION  
-@TITLE:-> INJECT THE NAV BAR 
+@TITLE:-> INJECT THE NAV BAR & ADD CSS 
 @ABOUT: 
 @LOCATION:[🔺src/core/Navbar/, 🔺src/core/Base/] 
 
@@ -55,5 +55,32 @@ the Base.
 -🎯INJECT NAVBAR INTO BASE.JS FILE 
 -🎯in this one we'r going to add navigation bar surly we'll migrating throught variety of pages e.g signin signout, login, logout like
 let's go ahead & inject that. we'r gonna keep them as a separate component in 🗃️Navbar.js
+
+go to ➡️(Navbar.js) 
+Adding Style to navbar. Go and explore belew part.
+ADD CurrentTab = (history,path) history is coming it from Link itself;
+-Need to define conditional Rendering 
+-if history.location.pathname === is equal to "path" which is coming it from LINK base on provide defferent-defferent styling 
+-we use the useLocation hook from react-router-dom to get the current location.
+
+-PROCESS OF ADDING STYLING IF YOU ARE IN CURRENT TAB THEN LINK COLOR IS "WIGHT" IT MEAN LINK IS ACTIVE O.W IF YOU'R NOT IN CurrentTab THE COLOR IS DEFFERENT "GREEN" IT MEAN YOU YOU NOT ACTIVE 
+
+'🥊🥊---------------------NEW-----------------------🥊🥊'
+
+@SECTION@: - NAVIGATION & AUTHENTICATION  
+@TITLE:-> ROUTES FOR SIGNIN AND SIGNUP  
+@ABOUT: 
+@LOCATION:[🔺src/user/signin/signup/..., 🔺src/Routes.js] 
+@PROCESS_Between: 🗃️signin/signup ---🗃️Routes.js 
+@OVERVIEW:
+-Working on signin & signup And signout route
+-should be able to access each one of them
+-Perform conditional Rendering on Navbar it's
+-Condition:if user signin == should be able to see Signout button & rest of the people should'nt be seen it 
+-create form on src/user/signup/signin/signout 
+-Go To 🗃️Routes.js & import this signup form 
+🔺-!IMP_NOTE: route name('/signin') should be match with Navbar.js file that you were passed in (to="/signin")
+
+
 
 */

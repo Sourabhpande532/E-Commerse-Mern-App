@@ -6,7 +6,7 @@ import Base from "./Base";
 const Home = () => {
   console.log("API Is", API);
   return (
-    <Base title='Home Page'>
+    <Base title='Home Page' description="Welcome to tshrt Store">
       {/* BY The Time It Consider Aa a Cards Below Button */}
       <div className='row'>
         <div className='col-4'>
