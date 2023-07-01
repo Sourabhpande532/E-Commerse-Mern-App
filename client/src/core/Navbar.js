@@ -43,7 +43,7 @@ const Navbar = () => {
         </li>
         <li className='nav-item'>
           <Link style={currentTab(location, "/signin")} className='nav-link' to='/signin'>
-            Signin 
+            Sign In  
           </Link>
         </li>
         <li className='nav-item'>

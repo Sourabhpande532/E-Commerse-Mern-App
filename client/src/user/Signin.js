@@ -3,9 +3,30 @@ import Base from "../core/Base"
 import { Link } from 'react-router-dom'
 
 const Signin = () => {
+  const signInForm = () => {
+    return (
+      <div className='row'>
+        <div className='col-md-6 offset-sm-3 text-left'>
+          <form>
+            {/* Email */}
+            <div className='form-group'>
+              <label className='text-light'>Email</label>
+              <input className='form-control' type='email' />
+            </div>
+            {/* Password */}
+            <div className='form-group'>
+              <label className='text-light'>Password</label>
+              <input className=' form-control' type='password' />
+            </div>
+            <button className='btn btn-success btn-block'>Submit</button>
+          </form>
+        </div>
+      </div>
+    );
+  };
   return (
-    <Base title='Sign in' description='Hey,this is ...'>
-     <h1>Sign Up Works</h1>
+    <Base title='Sign in' description='A page for signin work'>
+     {signInForm()}
     </Base>
   )
 }

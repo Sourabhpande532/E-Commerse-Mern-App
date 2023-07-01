@@ -1,13 +1,39 @@
-import React from 'react'
-import Base from "../core/Base"
-import { Link } from 'react-router-dom'
+import React from "react";
+import Base from "../core/Base";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
-  return (
-    <Base title='Sign up' description='Hey,this is ...'>
-     <h1>Sign Up Works</h1>
-    </Base>
-  )
-}
+  const signUpForm = () => {
+    return (
+      <div className='row'>
+        <div className='col-md-6 offset-sm-3 text-left'>
+          <form>
+            <div className='form-group'>
+              <label className='text-light'>Name</label>
+              <input className='form-control' type='text' />
+            </div>
+            {/* Email */}
+            <div className='form-group'>
+              <label className='text-light'>Email</label>
+              <input className='form-control' type='email' />
+            </div>
+            {/* Password */}
+            <div className='form-group'>
+              <label className='text-light'>Password</label>
+              <input className=' form-control' type='password' />
+            </div>
+            <button className='btn btn-success btn-block'>Submit</button>
+          </form>
+        </div>
+      </div>
+    );
+  };
 
-export default Signup
+  return (
+    <Base title='Sign up' description='A page for user to signin'>
+      {signUpForm()}
+    </Base>
+  );
+};
+
+export default Signup;

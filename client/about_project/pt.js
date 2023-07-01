@@ -82,5 +82,14 @@ ADD CurrentTab = (history,path) history is coming it from Link itself;
 🔺-!IMP_NOTE: route name('/signin') should be match with Navbar.js file that you were passed in (to="/signin")
 
 
+'🥊🥊---------------------NEW-----------------------🥊🥊'
+
+@SECTION@: - NAVIGATION & AUTHENTICATION  
+@TITLE:-> SIGNIN AND SIGNUP FORM & AUTHENTICATION for react  
+@ABOUT: Fetch API From FRONTEND & Manupulate 
+@LOCATION:[🔺src/auth/index.js] 
+@OVERVIEW:
+Talking to BACKEND & fetch the DATA 
+ 
 
 */
