@@ -90,6 +90,15 @@ ADD CurrentTab = (history,path) history is coming it from Link itself;
 @LOCATION:[🔺src/auth/index.js] 
 @OVERVIEW:
 Talking to BACKEND & fetch the DATA 
+
  
+'🥊🥊---------------------NEW-----------------------🥊🥊'
+
+@SECTION@: - NAVIGATION & AUTHENTICATION  
+@TITLE:-> SIGNUP COMPONENT TALK TO BACKEND   
+@ABOUT:
+@LOCATION:[🔺src/user/signup/] 
+@OVERVIEW:
+
 
 */
