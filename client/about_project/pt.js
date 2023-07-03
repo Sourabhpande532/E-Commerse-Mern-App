@@ -100,5 +100,32 @@ Talking to BACKEND & fetch the DATA
 @LOCATION:[🔺src/user/signup/] 
 @OVERVIEW:
 
+-Take a refference of 
+Ref:🔗✈️https://chat.openai.com/c/e3a0a6ab-ca55-48f1-bc92-c49918140df2
+
+we'r going to talk about three main puzzles in the session which help to signout the user 
+📶first one => where to stored all the data that is coming it form froms befour we actually submitted to backend.
+& there come up the state come in the pictures which is specility of react so we'r gonna learn here.  
+📶2nd one => when somebuddy type in the form we want to get what he exactly typing & put them into stored something
+like handle changes. is gonna be methods that will do it. 
+📶3rd one => finaly hit submit whaterver user type it we'r gonna stroed it into a state/stage & pick that up & will 
+make a response Or will make a request to the backend through the method that we'r designed "helper" & then get the 
+
+..............................................................
+@ABOUT:-> signin.js 
+-why didRedirect -> if user successfully signin we need redirect somewhere for sake base on what role he is having...
+-why loading     -> while fetch the data the loading is going on please have pations 
+-use Redirect 
+-import singin,authenticate,isAuthenticated
+-after distruturing follow below one ↙️↙️
+-Take a look one time on 🗃️auth/helper/index.js is gonna return entire localStorage which has jsonwebtoken which is at Browswe window we need hold on this one into Variable in 🗃️signin.js 
+
+-REMEMBER onSubmit event you passed authenticate at the time index.js you pass 'data' and 'next' so that data we include & insted next we use/fireup 'callback' for return ...all values 
+
+
+
+
+
+
 
 */
