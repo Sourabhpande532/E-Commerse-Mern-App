@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Base from "../core/Base";
-import { Link, Redirect } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import { signin, authenticate, isAuthenticated } from "../auth/helper/index";
 
 const Signin = () => {
@@ -22,7 +22,7 @@ const Signin = () => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
-  //ON SUBMIT 
+  //ON SUBMIT
   const onSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: false, loading: true });
@@ -42,6 +42,49 @@ const Signin = () => {
       .catch(console.log("signin request failed"));
   };
 
+  // PERFORM REDIRECT
+  const performRedirect = () => {
+  //PENDING STATE 
+    if (didRedirect) {
+      if (user && user.role === 1) {
+        return <p>redirect to admin</p>;
+      } else {
+        return <p>redirect to user admin</p>;
+      }
+    }
+    if (isAuthenticated()) {
+      return <redirect to="/"/>
+    }
+  };
+  
+  /* OPTIONAL:
+    const performRedirect = () => {
+    if (didRedirect) {
+      if (user && user.role === 1) {
+        return navigate("/admin/dashboard")
+      } else {
+        return navigate("/user/dashboard");;
+      }
+    }
+    if (isAuthenticated()) {
+      navigate("/");
+    }
+  };
+  
+  */
+
+  
+  // LOADING MESSAGE
+  const loadingMessage = () => {
+    return (
+      loading && (
+        <div className=' alert alert-info'>
+          <h2>Loading...</h2>
+        </div>
+      )
+    );
+  };
+
   // ERROR MESSAGE
   const errorMessage = () => {
     return (
@@ -57,7 +100,7 @@ const Signin = () => {
     );
   };
 
-  // SIGNIN FORM 
+  // SIGNIN FORM
   const signInForm = () => {
     return (
       <div className=' row'>
@@ -96,7 +139,10 @@ const Signin = () => {
 
   return (
     <Base title='Sign in' description='A page for signin work'>
+      {loadingMessage()}
+      {errorMessage()}
       {signInForm()}
+      {performRedirect()}
     </Base>
   );
 };
