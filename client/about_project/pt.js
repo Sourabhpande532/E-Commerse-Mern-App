@@ -96,8 +96,8 @@ Talking to BACKEND & fetch the DATA
 
 @SECTION@: - NAVIGATION & AUTHENTICATION  
 @TITLE:-> SIGNUP COMPONENT TALK TO BACKEND   
-@ABOUT:
-@LOCATION:[🔺src/user/signup/] 
+@ABOUT: All About signup and signin page, fetch API FROM Backend 
+@LOCATION:[🔺src/user/signup/,🔺src/user/signin/]
 @OVERVIEW:
 
 -Take a refference of 
@@ -121,6 +121,31 @@ make a response Or will make a request to the backend through the method that we
 -Take a look one time on 🗃️auth/helper/index.js is gonna return entire localStorage which has jsonwebtoken which is at Browswe window we need hold on this one into Variable in 🗃️signin.js 
 
 -REMEMBER onSubmit event you passed authenticate at the time index.js you pass 'data' and 'next' so that data we include & insted next we use/fireup 'callback' for return ...all values 
+
+'🥊🥊---------------------NEW-----------------------🥊🥊'
+
+@SECTION@: - RESTRICATION ROUTE AND PROFILE   
+@TITLE:-> CONDITIONAL RENDERING FOR SIGNOUT    
+@ABOUT: Al
+@LOCATION:[🔺src/auth/helper/index,🔺src/core/Navbar/]
+@OVERVIEW:
+
+if signin - show signout 
+if not - signup
+
+Go➡️ src/auth/index.js in Signout pass we pass "next" middleware but Why?? because it allow you to pass "callback" where base on we redirect user either Home or somewher eles
+
+Ref: 🔗✈️https://v5.reactrouter.com/web/example/auth-workflow
+Ref: 🔗✈️https://v5.reactrouter.com/
+Ref: 🔗✈️https://legacy.reactjs.org/docs/fragments.html
+
+@ABOUT:RESTRICATION ON ROUTES 
+@LOCATION: 
+befour RESTRICATION we play with signin & singup by using "ReactFragments" instead of div because div it is Block Level elemnt mess up all the stuff So use this this is all we'r performing for "Base on Certain Condition we show signin & signup Routes"
+
+
+
+
 
 
 
