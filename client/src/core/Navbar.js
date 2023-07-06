@@ -36,7 +36,7 @@ const Navbar = () => {
             style={currentTab(location, "/user/dashboard")}
             className='nav-link'
             to='/user/dashboard'>
-            Dashboard
+            U.Dashboard
           </Link>
         </li>
         <li className='nav-item'>
