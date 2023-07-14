@@ -18,11 +18,13 @@ const Navbar = () => {
   return (
     <div>
       <ul className='nav nav-tabs bg-dark'>
+        {/*HOME*/}
         <li className='nav-item'>
           <Link style={currentTab(location, "/")} className='nav-link' to='/'>
             Home
           </Link>
         </li>
+        {/*CART*/}
         <li className='nav-item'>
           <Link
             style={currentTab(location, "/cart")}
@@ -31,22 +33,28 @@ const Navbar = () => {
             Cart
           </Link>
         </li>
-        <li className='nav-item'>
-          <Link
-            style={currentTab(location, "/user/dashboard")}
-            className='nav-link'
-            to='/user/dashboard'>
-            U.Dashboard
-          </Link>
-        </li>
-        <li className='nav-item'>
-          <Link
-            style={currentTab(location, "/admin/dashboard")}
-            className='nav-link'
-            to='/admin/dashboard'>
-            A.Dashboard
-          </Link>
-        </li>
+        {/*USER DASHBOARD */}
+        {isAuthenticated() && isAuthenticated().user.role === 0 && (
+          <li className='nav-item'>
+            <Link
+              style={currentTab(location, "/user/dashboard")}
+              className='nav-link'
+              to='/user/dashboard'>
+              U.Dashboard
+            </Link>
+          </li>
+        )}
+        {/*ADMIN DASHBOARD */}
+        {isAuthenticated() && isAuthenticated().user.role === 1 && (
+          <li className='nav-item'>
+            <Link
+              style={currentTab(location, "/admin/dashboard")}
+              className='nav-link'
+              to='/admin/dashboard'>
+              A.Dashboard
+            </Link>
+          </li>
+        )}
         {/* LOGIC FOR NOT AUTHENTICATE USER (FALSE)'0' */}
         {!isAuthenticated() && (
           <Fragment>

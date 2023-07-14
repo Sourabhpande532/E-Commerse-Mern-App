@@ -45,36 +45,17 @@ const Signin = () => {
 
   // PERFORM REDIRECT
   const performRedirect = () => {
-  //PENDING STATE 
+    //PENDING STATE
     if (didRedirect) {
       if (user && user.role === 1) {
         return navigate("/admin/dashboard");
-      } else {
-        return navigate("/user/dashboard");
-      }
-    }
-    if (isAuthenticated()) {
-      return navigate("/")
-    }
-  };
-  
-  /* OPTIONAL:
-    const performRedirect = () => {
-    if (didRedirect) {
-      if (user && user.role === 1) {
-        return navigate("/admin/dashboard")
-      } else {
-        return navigate("/user/dashboard");;
       }
     }
     if (isAuthenticated()) {
       navigate("/");
     }
   };
-  
-  */
 
-  
   // LOADING MESSAGE
   const loadingMessage = () => {
     return (
@@ -144,7 +125,7 @@ const Signin = () => {
       {errorMessage()}
       {signInForm()}
       {performRedirect()}
-      <p className=" text-white text-center">{JSON.stringify(values)}</p>
+      <p className=' text-white text-center'>{JSON.stringify(values)}</p>
     </Base>
   );
 };
