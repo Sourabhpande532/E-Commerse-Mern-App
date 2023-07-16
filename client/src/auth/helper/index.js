@@ -74,7 +74,10 @@ export const signout = (next) => {
 -then via check data via FRONTEND if match then TRUE  
 */
 
-/* RETURN 1(TRUR) OR 0(FALSE)  */
+/* 
+-RETURN 1(TRUR) OR 0(FALSE)
+-GET USER & TOKEN HERE 
+  */
 export const isAuthenticated = () => {
   if (typeof window == "undefined") {
     return false;
