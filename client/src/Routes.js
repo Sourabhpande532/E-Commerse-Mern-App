@@ -33,6 +33,8 @@ const AppRoutes = () => {
             </Route>  OR */}
 
         <Route path="/admin/*" element={<AdminRoutes />} />
+      
+
       </Routes>
     </BrowserRouter>
   );
