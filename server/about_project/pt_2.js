@@ -472,4 +472,10 @@ has been successfully it mean The ammount has successfully deducted from a use
    
    -🎗️Then, simply call callback
 
+
+   @LOCATION:[admin/AddProduct.js]
+   HANDLE CHANGE EVENT
+   what if the value name is photo (while click on photo section via frontend(name)) if it is equal to "photo" then "event.target.files[0]" files come with lot more iterable properties like jpg and file stuff && all the other cases 'event.target.value'(it is for rest of the stuff like name,description,stock,price...) 
+  set formData to send value in backend
+
 */

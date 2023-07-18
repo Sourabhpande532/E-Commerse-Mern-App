@@ -1,24 +1,77 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Base from "../core/Base";
 import { Link } from "react-router-dom";
+import { getCategories } from "./helper/adminapicall";
+import { isAuthenticated } from "../auth/helper";
 
 const AddProduct = () => {
-  const [value, setValue] = useState({
+  const { user, token } = isAuthenticated();
+
+  const [values, setValue] = useState({
     name: "",
     description: "",
     price: "",
     stock: "",
+    photo: "",
+    categories: [],
+    category: "",
+    loading: false,
+    error: "",
+    createdProduct: "",
+    getaRedirect: false,
+    formData: "",
   });
 
-  //DISTRUCTURING 
-  const { name, description, price, stock } = value;
+  //DISTRUCTURING
+  const {
+    name,
+    description,
+    price,
+    stock,
+    categories,
+    category,
+    loading,
+    error,
+    createdProduct,
+    getaRedirect,
+    formData,
+  } = values;
+
+  // PRELOAD
+  const preload = () => {
+    // CALL API TO DISPLAY ALL CATEGORY
+    getCategories().then((data) => {
+      console.log(data);
+      if (data.error) {
+        setValue({ ...values, error: data.error });
+      } else {
+        setValue({ ...values, categories: data, formData: new FormData() });
+        console.log("CATE:", categories);
+      }
+    });
+  };
+
+  // USE EFFECT
+  useEffect(() => {
+    preload();
+  }, []);
 
 
   // HANDLE CHANGE EVENT
-  const handleChange = () => {
-  // 
+  const handleChange = (name) => (event) => {
+    const value = name === "photo" ? event.target.files[0] : event.target.value;
+    formData.set(name, value);
+    setValue({ ...values, [name]: value });
   };
-
+  /* FOR REFFERENCE SEE 
+   const handleChange = (event) => {
+    const { name, value, type, files } = event.target;
+    const newValue = type === "file" ? files[0] : value;
+  
+    setValue({ ...values, [name]: newValue });
+  }; */
+  
+  
   // ON SUBMIT EVENT
   const onSubmit = () => {
     //
@@ -73,6 +126,14 @@ const AddProduct = () => {
             className='form-control'
             placeholder='Category'>
             <option>Select</option>
+            {categories &&
+              categories.map((cate, index) => {
+                return (
+                  <option key={index} value={cate._id}>
+                    {cate.name}
+                  </option>
+                );
+              })}
           </select>
         </div>
         <div className='form-group'>
