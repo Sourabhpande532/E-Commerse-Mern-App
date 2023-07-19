@@ -10,7 +10,7 @@ import AdminRoutes from "./auth/helper/AdminRoutes";
 import AdminDashboard from "../src/user/AdminDashboard";
 import PrivateRoutes from "./auth/helper/PrivateRoutes";
 import UserDashboard from "../src/user/UserDashboard";
-import AddCategory from "./admin/AddCategory";
+
 
 const AppRoutes = () => {
   const history = createBrowserHistory();

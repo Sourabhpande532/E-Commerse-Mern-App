@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Base from "../core/Base";
-import { Link } from "react-router-dom";
-import { getCategories } from "./helper/adminapicall";
+import { Link, useNavigate } from "react-router-dom";
+import { createdProduct, getCategories } from "./helper/adminapicall";
 import { isAuthenticated } from "../auth/helper";
 
 const AddProduct = () => {
+  const navigate = useNavigate()
   const { user, token } = isAuthenticated();
 
   const [values, setValue] = useState({
@@ -17,7 +18,7 @@ const AddProduct = () => {
     category: "",
     loading: false,
     error: "",
-    createdProduct: "",
+    createProduct: "",
     getaRedirect: false,
     formData: "",
   });
@@ -32,7 +33,7 @@ const AddProduct = () => {
     category,
     loading,
     error,
-    createdProduct,
+    createProduct,
     getaRedirect,
     formData,
   } = values;
@@ -50,6 +51,7 @@ const AddProduct = () => {
       }
     });
   };
+
 
   // USE EFFECT
   useEffect(() => {
@@ -70,13 +72,54 @@ const AddProduct = () => {
   
     setValue({ ...values, [name]: newValue });
   }; */
-  
-  
+
+
+
   // ON SUBMIT EVENT
-  const onSubmit = () => {
-    //
+  const onSubmit = (event) => {
+    event.preventDefault();
+    setValue({ ...values, error: "", loading: true });
+    //CALL API HERE PASS AS AN AFRGUMENT
+    //user._id(user & token from isAuthenticated, formData:->for required imformation of product that's why) for ensure GO->🗃️adminapicall.js
+    createdProduct(user._id, token, formData).then((data) => {
+      if (data.error) {
+        setValue({ ...values, error: data.error });
+      } else {
+        setValue({
+          ...values,
+          name: "",
+          description: "",
+          price: "",
+          photo: "",
+          stock: "",
+          loading: false,
+          createProduct: data.name,
+        });
+      }
+    });
+    navigate("/admin/dashboard")
   };
 
+
+  // SUCCESS MESSAGE
+  const successMessage = () => (
+    <div
+      className='alert alert-success mt-3'
+      style={{ display: createProduct ? "" : "none" }}>
+      <h4>{createProduct} created successfully</h4>
+    </div>
+  );
+
+  // WARNING MESSAGE ?
+  const warningMessage = () => (
+    <div
+      className='alert alert-warning mt-3'
+      style={{ display: !createProduct ? "none" : "" }}>
+      <h4>{createProduct} Failed to create category</h4>
+    </div>
+  );
+
+  
   // PRODUCT CREATE FORM
   function createProductForm() {
     return (
@@ -138,7 +181,7 @@ const AddProduct = () => {
         </div>
         <div className='form-group'>
           <input
-            onChange={handleChange("quantity")}
+            onChange={handleChange("stock")}
             type='number'
             className='form-control'
             placeholder='Quantity'
@@ -164,7 +207,11 @@ const AddProduct = () => {
       </Link>
       <div className='row bg-dark text-white rounded'>
         <div className=' col-md-8 offset-md-2'>
-          <h1 className=' text-white'>{createProductForm()}</h1>
+          <h1 className=' text-white'>
+            {successMessage()}
+            {warningMessage()}
+            {createProductForm()}
+          </h1>
         </div>
       </div>
     </Base>
