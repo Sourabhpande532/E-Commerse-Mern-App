@@ -6,7 +6,7 @@ import AddCategory from "../../admin/AddCategory.js";
 import AddProduct from "../../admin/AddProduct.js";
 import ManageCategory from "../../admin/ManageCategory.js";
 import ManageProducts from "../../admin/ManageProducts.js";
-
+import UpdateProduct from "../../admin/UpdateProduct.js";
 
 
 const AdminRoutes = ({ element: Component, ...rest }) => {
@@ -19,6 +19,7 @@ const AdminRoutes = ({ element: Component, ...rest }) => {
       <Route path='/create/product' element={<AddProduct />} />
       <Route path='/categories' element={<ManageCategory />} />
       <Route path='/products' element={<ManageProducts />} />
+      <Route path='/product/update/:productId' element={<UpdateProduct />} />
 
     </Routes>
   ) : (
