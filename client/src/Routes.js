@@ -27,11 +27,9 @@ const AppRoutes = () => {
         <Route path='/' element={<AdminRoutes />}>
           <Route path='/admin/dashboard' element={<AdminDashboard />} />
         </Route>
-
-        {/* <Route path='/' element={<AdminRoutes />}>
+        {/*<Route path='/' element={<AdminRoutes />}>
           <Route path='/admin/product/update/:productId' element={<AdminDashboard />} />
          </Route> */}
-
         <Route path='/admin/*' element={<AdminRoutes />} />
       </Routes>
     </BrowserRouter>

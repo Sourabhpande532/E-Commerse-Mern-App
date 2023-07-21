@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Base from "../core/Base";
 import { isAuthenticated } from "../auth/helper";
-import { getProduct, getCategories, updateProduct } from "./helper/adminapicall";
+import {
+  getProduct,
+  getCategories,
+  updateProduct,
+} from "./helper/adminapicall";
 
 const UpdateProduct = () => {
   const { productId } = useParams(); // Using the useParams hook to get the productId
@@ -37,6 +41,7 @@ const UpdateProduct = () => {
     formData,
   } = values;
 
+  // PRELOAD
   const preload = async (productId) => {
     try {
       const data = await getProduct(productId);
@@ -59,7 +64,8 @@ const UpdateProduct = () => {
       setValues({ ...values, error: "Failed to fetch product data" });
     }
   };
-  
+
+  // PRELOAD CATEGORIES
   const preloadCategories = async () => {
     try {
       const data = await getCategories();
@@ -77,12 +83,13 @@ const UpdateProduct = () => {
       setValues({ ...values, error: "Failed to fetch categories data" });
     }
   };
-  
 
+  // USE EFFECT 
   useEffect(() => {
-    preload(productId)
+    preload(productId);
   }, [productId]); // Make sure to add productId to the dependency array
 
+  // ON SUBMIT
   const onSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: "", loading: true });
@@ -104,18 +111,23 @@ const UpdateProduct = () => {
     });
   };
 
+  // SUCCESS MESSAGE 
   const successMessage = () => (
-    <div className="alert alert-success mt-3" style={{ display: createdProduct ? "" : "none" }}>
+    <div
+      className='alert alert-success mt-3'
+      style={{ display: createdProduct ? "" : "none" }}>
       <h4>{createdProduct} updated successfully</h4>
     </div>
   );
 
+  // HADLE CHANGE EVENT
   const handleChange = (name) => (event) => {
     const value = name === "photo" ? event.target.files[0] : event.target.value;
     formData.set(name, value);
     setValues({ ...values, [name]: value });
   };
 
+  // FORM
   function createProductForm() {
     return (
       <form>
@@ -191,15 +203,17 @@ const UpdateProduct = () => {
       </form>
     );
   }
-
   return (
-    <Base title="Add a product here" description="Welcome to product creation section" className="container bg-info p-4">
-      <Link to="/admin/dashboard" className="btn btn-md btn-dark mb-3">
+    <Base
+      title='Add a product here'
+      description='Welcome to product creation section'
+      className='container bg-info p-4'>
+      <Link to='/admin/dashboard' className='btn btn-md btn-dark mb-3'>
         Admin Home
       </Link>
-      <div className="row bg-dark text-white rounded">
-        <div className="col-md-8 offset-md-2">
-          <h1 className="text-white">
+      <div className='row bg-dark text-white rounded'>
+        <div className='col-md-8 offset-md-2'>
+          <h1 className='text-white'>
             {successMessage()}
             {createProductForm()}
           </h1>
@@ -210,4 +224,3 @@ const UpdateProduct = () => {
 };
 
 export default UpdateProduct;
-
