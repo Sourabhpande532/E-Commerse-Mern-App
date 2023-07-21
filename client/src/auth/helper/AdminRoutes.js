@@ -14,13 +14,15 @@ const AdminRoutes = ({ element: Component, ...rest }) => {
     <Routes>
       <Route path='/admin/dashboard/' element={<AdminDashboard />} />
 
-      {/*<Route path="/admin/create/category" element={<AddCategory/>}/> OR */}
+      {/*<Route path="/admin/product/update/:productId" element={<UpdateProduct/>}/> OR */}
+
+      <Route path="/product/update/:productId" element={<UpdateProduct/>}/>
+
       <Route path='/create/category' element={<AddCategory />} />
       <Route path='/create/product' element={<AddProduct />} />
       <Route path='/categories' element={<ManageCategory />} />
       <Route path='/products' element={<ManageProducts />} />
-      <Route path='/product/update/:productId' element={<UpdateProduct />} />
-
+   
     </Routes>
   ) : (
     <Navigate to='/signin' replace state={{ from: rest.location }} />

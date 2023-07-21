@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import Base from "../core/Base";
-import { Link } from "react-router-dom";
-
+import { isAuthenticated } from "../auth/helper";
+import { getProduct, getCategories, updateProduct } from "./helper/adminapicall";
 
 const UpdateProduct = () => {
+  const { productId } = useParams(); // Using the useParams hook to get the productId
+  const { user, token } = isAuthenticated();
+
   const [values, setValues] = useState({
     name: "",
     description: "",
@@ -18,7 +22,7 @@ const UpdateProduct = () => {
     getaRedirect: false,
     formData: "",
   });
-  
+
   const {
     name,
     description,
@@ -33,10 +37,56 @@ const UpdateProduct = () => {
     formData,
   } = values;
 
-  // ON SUBMIT 
+  const preload = async (productId) => {
+    try {
+      const data = await getProduct(productId);
+      console.log(data);
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({
+          ...values,
+          name: data.name,
+          description: data.description,
+          price: data.price,
+          category: data.category._id,
+          stock: data.stock,
+        });
+        preloadCategories();
+      }
+    } catch (error) {
+      console.error("Error while fetching product:", error);
+      setValues({ ...values, error: "Failed to fetch product data" });
+    }
+  };
+  
+  const preloadCategories = async () => {
+    try {
+      const data = await getCategories();
+      console.log(data);
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({
+          ...values,
+          categories: data,
+        });
+      }
+    } catch (error) {
+      console.error("Error while fetching categories:", error);
+      setValues({ ...values, error: "Failed to fetch categories data" });
+    }
+  };
+  
+
+  useEffect(() => {
+    preload(productId)
+  }, [productId]); // Make sure to add productId to the dependency array
+
   const onSubmit = (event) => {
     event.preventDefault();
-    setValues({ ...values, error: "", loading: true }).then((data) => {
+    setValues({ ...values, error: "", loading: true });
+    updateProduct(productId, user._id, token, formData).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
@@ -54,11 +104,8 @@ const UpdateProduct = () => {
     });
   };
 
-  // SUCCESS MESSAGE 
   const successMessage = () => (
-    <div
-      className='alert alert-success mt-3'
-      style={{ display: createdProduct ? "" : "none" }}>
+    <div className="alert alert-success mt-3" style={{ display: createdProduct ? "" : "none" }}>
       <h4>{createdProduct} updated successfully</h4>
     </div>
   );
@@ -69,7 +116,6 @@ const UpdateProduct = () => {
     setValues({ ...values, [name]: value });
   };
 
-  // FORM
   function createProductForm() {
     return (
       <form>
@@ -128,10 +174,10 @@ const UpdateProduct = () => {
         </div>
         <div className='form-group'>
           <input
-            onChange={handleChange("quantity")}
+            onChange={handleChange("stock")}
             type='number'
             className='form-control'
-            placeholder='Quantity'
+            placeholder='stock'
             value={stock}
           />
         </div>
@@ -147,16 +193,13 @@ const UpdateProduct = () => {
   }
 
   return (
-    <Base
-      title='Add a product here'
-      description='Welcome to product creation section'
-      className=' container bg-info p-4'>
-      <Link to='/admin/dashboard' className=' btn btn-md btn-dark mb-3'>
+    <Base title="Add a product here" description="Welcome to product creation section" className="container bg-info p-4">
+      <Link to="/admin/dashboard" className="btn btn-md btn-dark mb-3">
         Admin Home
       </Link>
-      <div className='row bg-dark text-white rounded'>
-        <div className=' col-md-8 offset-md-2'>
-          <h1 className=' text-white'>
+      <div className="row bg-dark text-white rounded">
+        <div className="col-md-8 offset-md-2">
+          <h1 className="text-white">
             {successMessage()}
             {createProductForm()}
           </h1>
@@ -166,5 +209,5 @@ const UpdateProduct = () => {
   );
 };
 
-
 export default UpdateProduct;
+

@@ -11,7 +11,6 @@ import AdminDashboard from "../src/user/AdminDashboard";
 import PrivateRoutes from "./auth/helper/PrivateRoutes";
 import UserDashboard from "../src/user/UserDashboard";
 
-
 const AppRoutes = () => {
   const history = createBrowserHistory();
 
@@ -28,13 +27,12 @@ const AppRoutes = () => {
         <Route path='/' element={<AdminRoutes />}>
           <Route path='/admin/dashboard' element={<AdminDashboard />} />
         </Route>
+
         {/* <Route path='/' element={<AdminRoutes />}>
-            <Route path='/admin/create/category' element={<AddCategory />} />
-            </Route>  OR */}
+          <Route path='/admin/product/update/:productId' element={<AdminDashboard />} />
+         </Route> */}
 
-        <Route path="/admin/*" element={<AdminRoutes />} />
-      
-
+        <Route path='/admin/*' element={<AdminRoutes />} />
       </Routes>
     </BrowserRouter>
   );
