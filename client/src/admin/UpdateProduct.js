@@ -24,7 +24,7 @@ const UpdateProduct = () => {
     error: "",
     createdProduct: "",
     getaRedirect: false,
-    formData: "",
+    formData: new FormData()
   });
 
   const {
@@ -41,53 +41,38 @@ const UpdateProduct = () => {
     formData,
   } = values;
 
-  // PRELOAD
-  const preload = async (productId) => {
+  // PRELOAD DATA
+  const preloadData = async () => {
     try {
-      const data = await getProduct(productId);
-      console.log(data);
-      if (data.error) {
-        setValues({ ...values, error: data.error });
+      const productData = await getProduct(productId);
+      const categoryData = await getCategories();
+      console.log(productData);
+      console.log(categoryData);
+
+      if (productData.error || categoryData.error) {
+        setValues({ ...values, error: productData.error || categoryData.error });
       } else {
         setValues({
           ...values,
-          name: data.name,
-          description: data.description,
-          price: data.price,
-          category: data.category._id,
-          stock: data.stock,
-        });
-        preloadCategories();
-      }
-    } catch (error) {
-      console.error("Error while fetching product:", error);
-      setValues({ ...values, error: "Failed to fetch product data" });
-    }
-  };
-
-  // PRELOAD CATEGORIES
-  const preloadCategories = async () => {
-    try {
-      const data = await getCategories();
-      console.log(data);
-      if (data.error) {
-        setValues({ ...values, error: data.error });
-      } else {
-        setValues({
-          ...values,
-          categories: data,
+          name: productData.name,
+          description: productData.description,
+          price: productData.price,
+          category: productData.category._id,
+          stock: productData.stock,
+          categories: categoryData,
         });
       }
     } catch (error) {
-      console.error("Error while fetching categories:", error);
-      setValues({ ...values, error: "Failed to fetch categories data" });
+      console.error("Error while fetching product or categories:", error);
+      setValues({ ...values, error: "Failed to fetch product or categories data" });
     }
   };
 
-  // USE EFFECT 
+  //USE EFFECT CALL 
   useEffect(() => {
-    preload(productId);
-  }, [productId]); // Make sure to add productId to the dependency array
+    preloadData();
+  }, []);
+
 
   // ON SUBMIT
   const onSubmit = (event) => {
