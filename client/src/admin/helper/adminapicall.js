@@ -46,6 +46,32 @@ export const getCategories = () => {
     });
 };
 
+// DELETE CATEGORIES "/category/:categoryId/:userId"
+export const deleteCategory = (categoryId, userId, token) => {
+  return fetch(`${API}/category/${categoryId}/${userId}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(
+          "Failed to Delet Categories. Please try again later."
+        );
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      throw new Error(
+        "An unexpected error occurred while deleting categories. Please try again later."
+      );
+    });
+};
+
 // CREATE PRODUCT(CALL 🔊)
 export const createdProduct = (userId, token, product) => {
   return fetch(`${API}/product/create/${userId}`, {
@@ -124,17 +150,20 @@ export const updateProduct = (productId, userId, token, product) => {
       Authorization: `Bearer ${token}`,
     },
     body: product,
-  }).then((response) => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error("Failed to Update Product. Please try again later.");
-    }
   })
-  .catch((err) => {
-    console.log(err);
-    throw new Error("An unexpected error occurred update product. Please try again later.");
-  });
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Failed to Update Product. Please try again later.");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      throw new Error(
+        "An unexpected error occurred update product. Please try again later."
+      );
+    });
 };
 
 // DELETE PRODUCT (CALL 🔊)
@@ -146,16 +175,17 @@ export const deleteProduct = (productId, userId, token) => {
       Authorization: `Bearer ${token}`,
     },
   })
-  .then((response) => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error("Failed to Delete Product. Please try again later.");
-    }
-  })
-  .catch((err) => {
-    console.log(err);
-    throw new Error("An unexpected error occurred in product(delete). Please try again later.");
-  });
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Failed to Delete Product. Please try again later.");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      throw new Error(
+        "An unexpected error occurred in product(delete). Please try again later."
+      );
+    });
 };
-
