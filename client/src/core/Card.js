@@ -6,8 +6,8 @@ import { addItemToCart } from "./helper/cartHelper";
 const Card = ({ product, addToCart = true, removeFromCart = false }) => {
   const [redirect, setRedirect] = useState(false);
   const [count,setCount] = useState(product.count)
-  
   const navigate = useNavigate();
+
 
   // TERNARY CALL EITHER CALL FROM DB OR DEFAULT
   const cartTitle = product ? product.name : "A Photo From Gallery";
@@ -28,7 +28,7 @@ const Card = ({ product, addToCart = true, removeFromCart = false }) => {
     }
   };
 
-  // ADD TO CARD
+  // ADD TO CARD(BTN)
   const showAddToCart = (addToCart) => {
     return (
       addToCart && (
@@ -41,7 +41,7 @@ const Card = ({ product, addToCart = true, removeFromCart = false }) => {
     );
   };
 
-  // REMOVE CART
+  // REMOVE CART(BTN)
   const showRemoveFromCart = (removeFromCart) => {
     return (
       removeFromCart && (
@@ -60,12 +60,14 @@ const Card = ({ product, addToCart = true, removeFromCart = false }) => {
       <div className='card-body'>
         {/* GET REDIRECT */}
         {getARedirect(redirect)}
+
         {/* IMAGE HELPER CALL TALK TO DB */}
         <ImageHelper product={product} />
 
         <p className='lead bg-success font-weight-normal text-wrap'>
           {cartDescription}
         </p>
+        
         <p className='btn btn-success rounded  btn-sm px-4'>${cartPrice}</p>
         <div className='row'>
           <div className='col-12'>{showAddToCart(addToCart)}</div>

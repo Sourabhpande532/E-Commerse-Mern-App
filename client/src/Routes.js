@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { createBrowserHistory } from "history";
+
+// PUBLIC ROUTE
 import Home from "./core/Home";
 import Signup from "./user/Signup";
 import Signin from "./user/Signin";
@@ -10,6 +12,7 @@ import AdminRoutes from "./auth/helper/AdminRoutes";
 import AdminDashboard from "../src/user/AdminDashboard";
 import PrivateRoutes from "./auth/helper/PrivateRoutes";
 import UserDashboard from "../src/user/UserDashboard";
+import Cart from "./core/Cart";
 
 const AppRoutes = () => {
   const history = createBrowserHistory();
@@ -17,9 +20,11 @@ const AppRoutes = () => {
   return (
     <BrowserRouter history={history}>
       <Routes>
+        {/* PUBLIC ROUTE  */}
         <Route path='/' element={<Home />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/signin' element={<Signin />} />
+        <Route path='/cart' element={<Cart />} />
 
         <Route path='/' element={<PrivateRoutes />}>
           <Route path='/user/dashboard' element={<UserDashboard />} />

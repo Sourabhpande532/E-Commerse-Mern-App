@@ -20,3 +20,12 @@ Now,we've preveledges To addItemtoCart
 -Go To Cart.js 
 -and get redirect to... for that create states, optionally call useEffect
 -getRedirect call this Methode*/
+
+// LOAD LOCAL STORAGE INFO & DISPLAY ON CART.Js 
+export const loadCart = () => {
+  if (typeof window !== undefined) {
+    if (localStorage.getItem("cart")) {
+      return JSON.parse(localStorage.getItem("cart"));
+    }
+  }
+};
