@@ -8,11 +8,12 @@ import Card from "./Card";
 const Cart = () => {
   console.log("API IS", API);
   const [products, setProducts] = useState([]);
+  // FORCE_FULLY RELOAD(For Remove Item From localStorage)
   const [reload, setReload] = useState(false);
 
   useEffect(()=>{
   setProducts(loadCart())
-  },[])
+  },[reload])
 
   const loadAllProducts = () => {
     return (
@@ -24,6 +25,8 @@ const Cart = () => {
             product={product}
             removeFromCart={true}
             addToCart={false}
+            setReload={setReload}
+            reload={reload}
              />
         ))}
       </div>

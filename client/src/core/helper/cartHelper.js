@@ -1,4 +1,6 @@
-/* SAVE TO LOCAL STORAGE */
+
+
+/* SAVE TO LOCAL STORAGE (ADD) */
 export const addItemToCart = (item, next) => {
   let cart = [];
   if (typeof window !== undefined) {
@@ -9,19 +11,40 @@ export const addItemToCart = (item, next) => {
       ...item,
       count: 1, // from Card.js
     });
+
+    // UPADATE THE CART 
     localStorage.setItem("cart", JSON.stringify(cart));
     next();
   }
 };
 
-/* title add tshirt to cart
-In this we'r gonna work of i just simply want to click on "Add to Cart" & when I click on to this on to cart we'r gonna store user cart information into localstorage & i should be redirect to "cart" page/component where i can make further Purchase or come back to home as per my wish & all the cart will updated. 
-Now,we've preveledges To addItemtoCart 
--Go To Cart.js 
--and get redirect to... for that create states, optionally call useEffect
--getRedirect call this Methode*/
 
-// LOAD LOCAL STORAGE INFO & DISPLAY ON CART.Js 
+/* REMOVE ITEM FROM LOCAL STORAGE INDIVIDUALLY(Separate) NOT ALL */
+export const removeItemFromCart = (productId) => {
+  let cart = [];
+  if (typeof window !== undefined) {
+    if (localStorage.getItem("cart")) {
+      cart = JSON.parse(localStorage.getItem("cart"));
+    }
+    console.log(cart)
+    cart.map((product, i) => {
+      if (product._id === productId) {
+        cart.splice(i, 1);
+      }
+    });
+    // UPADATE THE CART 
+    localStorage.setItem("cart", JSON.stringify(cart));
+    console.log(cart)
+
+  }
+  return cart; //Although Not need Too much But,Need to UPADATE On the Go 
+};
+
+
+
+
+
+// LOAD LOCAL STORAGE INFO & DISPLAY ON CART.Js
 export const loadCart = () => {
   if (typeof window !== undefined) {
     if (localStorage.getItem("cart")) {
