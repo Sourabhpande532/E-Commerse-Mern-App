@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ImageHelper from "./helper/ImageHelper";
+import ImageHelper from "./helper/imageHelper";
 import { addItemToCart, removeItemFromCart } from "./helper/cartHelper";
 
 const Card = ({
