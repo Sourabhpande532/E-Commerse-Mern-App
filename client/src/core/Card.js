@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ImageHelper from "./helper/imageHelper";
+import Image from "./helper/Image";
 import { addItemToCart, removeItemFromCart } from "./helper/cartHelper";
 
 const Card = ({
@@ -71,7 +71,7 @@ const Card = ({
         {getARedirect(redirect)}
 
         {/* IMAGE HELPER CALL TALK TO DB */}
-        <ImageHelper product={product} />
+        <Image product={product} />
 
         <p className='lead bg-success font-weight-normal text-wrap'>
           {cartDescription}
