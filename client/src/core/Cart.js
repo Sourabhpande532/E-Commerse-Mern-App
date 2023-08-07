@@ -4,6 +4,7 @@ import { API } from "../backend.js";
 import Base from "./Base";
 import { loadCart } from "./helper/cartHelper";
 import Card from "./Card";
+import StripeCheckout from "./StripeCheckout";
 
 const Cart = () => {
   console.log("API IS", API);
@@ -11,23 +12,23 @@ const Cart = () => {
   // FORCE_FULLY RELOAD(For Remove Item From localStorage)
   const [reload, setReload] = useState(false);
 
-  useEffect(()=>{
-  setProducts(loadCart())
-  },[reload])
+  useEffect(() => {
+    setProducts(loadCart());
+  }, [reload]);
 
   const loadAllProducts = () => {
     return (
       <div>
         <h2>This section is to load products</h2>
-        {products.map((product,index)=>(
-            <Card 
+        {products.map((product, index) => (
+          <Card
             key={index}
             product={product}
             removeFromCart={true}
             addToCart={false}
             setReload={setReload}
             reload={reload}
-             />
+          />
         ))}
       </div>
     );
@@ -44,7 +45,9 @@ const Cart = () => {
       <div className='row text-center'>
         <div className='row text-center'>
           <div className='col-6'>{loadAllProducts()}</div>
-          <div className='col-6'>{loadCheckout()}</div>
+          <div className='col-6'>
+            <StripeCheckout />
+          </div>
         </div>
       </div>
     </Base>
