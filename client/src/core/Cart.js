@@ -46,7 +46,9 @@ const Cart = () => {
         <div className='row text-center'>
           <div className='col-6'>{loadAllProducts()}</div>
           <div className='col-6'>
-            <StripeCheckout />
+            <StripeCheckout 
+            products ={products}
+            setReload ={setReload} />
           </div>
         </div>
       </div>

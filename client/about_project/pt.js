@@ -149,6 +149,18 @@ befour RESTRICATION we play with signin & singup by using "ReactFragments" inste
 -Go Routes.js (Import stuff)
 
 
+Work on Stripe CheckOut !! 
+-Optional You can use paypal,paytm,rajorpay,Brean tree CheckOut
+-🎯create 🗃️core/StripeCheckout.js file Then inject this into 🗃️core/Cart.js
+-🎯(🗃️@cart.js) first & foremost i want to load all the products that i can load there & (that were set in states) for calculate some stuff!! && apart from that I would like to pass reload function so i can refresh this COMPONENT whenever i like bez let's suppose user Remove elemnt he obisly see same price in cart  
+-🎯send this thing as a props products={products},setReload={setReload};
+-🎯then come to this one 🗃️StripeCheckout.js 
+-🎯use useState and useEffect && and invite information via props 
+-🎯then call isAuthenticated,cartEmpty,loadCart(it helps us to load all the items into our states)
+-🎯Now after all this Need a state to hold this thing 
+  -🎯this isAuthenticated() give the all the neccessory element which is userId & token!! 
+  -🎯one more thing that we want to grabbed since we've access of this products so base on that we want to calculate total of our entire checkout products process here for that need to define method "getFinalPrice" here we can calculate Payment of users base on how much it purchase!!
+  -🎯Then call it showStripeButton which is calling base on isAuthenticated if user is signin then it call o.w redirect to signin page
 
 
 
