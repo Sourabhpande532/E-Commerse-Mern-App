@@ -1,5 +1,7 @@
 const { v4: uuidv4 } = require("uuid");
-const stripe = require("stripe")("SECRET_KEY");
+const stripe = require("stripe")(
+  "sk_test_51NdDZpSJ2K4IePIet6f00cPGWM4gP4mg0FMp9xgJ2mhB0i6lWbExzhiaM6Ekiqmy7FZZJCSdl2uPtJToQIZOp2e400TfLHnPIM"
+);
 
 exports.makePayment = (req, res) => {
   const { token, products } = req.body;
@@ -22,12 +24,20 @@ exports.makePayment = (req, res) => {
       stripe.charges
         .create(
           {
-            ammount: ammount,
+            ammount: ammount * 100,
             currency: "usd",
             customers: customers.id,
             receipt_email: token.email,
+            description: "a test account",
             shipping: {
-              name: token.cart.name,
+              name: token.card.name,
+              address: {
+                line1: token.card.address_line1,
+                line2: token.card.address_line2,
+                city: token.card.address_city,
+                country: token.card.address_country,
+                postal_code: token.card.address_zip,
+              },
             },
           },
           { idempotencyKey }
@@ -36,8 +46,6 @@ exports.makePayment = (req, res) => {
         .catch((err) => console.log(err));
     });
 };
-
-
 
 /*
 @REFFERENCE: 
