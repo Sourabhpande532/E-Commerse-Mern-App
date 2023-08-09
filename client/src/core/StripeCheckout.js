@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { isAuthenticated } from "../auth/helper";
 import { cartEmpty, loadCart } from "./helper/cartHelper";
 import { Link } from "react-router-dom";
+import StripeCheckoutButton from "react-stripe-checkout";
 
 const StripeCheckout = ({
   products,
@@ -26,10 +27,26 @@ const StripeCheckout = ({
     return amount;
   };
 
-  //Stripe Button 
+  const makePayment = ()=>{
+  // 
+  }
+  /* 
+  makePayment is a method which is automatically generated with the help of "stripeKey" base on that you can make request to backend & backend can handle ... should be process the thing token and it expect token as a parameter 
+  */
+
+  //Stripe Button
   const showStripeButton = () => {
     return isAuthenticated() ? (
-      <button className='btn btn-success'>Pay with Stripe</button>
+      <StripeCheckoutButton
+       stripeKey=""
+       token={makePayment}
+       amount={getFinalAmount}
+       name="Buy Tshirts"
+       shippingAddress=""
+       
+      >
+        <button className='btn btn-success'>Pay with Stripe</button>
+      </StripeCheckoutButton>
     ) : (
       <Link to='/signin'>
         <button className='btn btn-warning'>Signin</button>
@@ -39,8 +56,9 @@ const StripeCheckout = ({
 
   return (
     <div>
-      <h3 className='text-white'>Stripe Checkout-{getFinalAmount()}
-       {showStripeButton()}
+      <h3 className='text-white'>
+        Stripe Checkout - {getFinalAmount()}
+        {showStripeButton()}
       </h3>
     </div>
   );

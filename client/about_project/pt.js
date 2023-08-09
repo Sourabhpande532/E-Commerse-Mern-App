@@ -161,6 +161,11 @@ Work on Stripe CheckOut !!
   -🎯this isAuthenticated() give the all the neccessory element which is userId & token!! 
   -🎯one more thing that we want to grabbed since we've access of this products so base on that we want to calculate total of our entire checkout products process here for that need to define method "getFinalPrice" here we can calculate Payment of users base on how much it purchase!!
   -🎯Then call it showStripeButton which is calling base on isAuthenticated if user is signin then it call o.w redirect to signin page
+  -🎯then npm i react-strip-checkout(pop up cart)
+  -🎯then wrapped code into it(pay with stripe button)
+  -🎯makePayment is a method which is automatically generated with the help of "stripeKey" base on that you can make request to backend & backend can handle ... should be process the thing token and it expect token as a parameter
+  Now time to go Backend 
+  Now Go This folder 🗃️controller/stripePayment.js 
 
 
 
