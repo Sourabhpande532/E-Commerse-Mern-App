@@ -478,4 +478,24 @@ has been successfully it mean The ammount has successfully deducted from a use
    what if the value name is photo (while click on photo section via frontend(name)) if it is equal to "photo" then "event.target.files[0]" files come with lot more iterable properties like jpg and file stuff && all the other cases 'event.target.value'(it is for rest of the stuff like name,description,stock,price...) 
   set formData to send value in backend
 
+
+  '🥊🥊---------------------NEW-----------------------🥊🥊'
+
+@SECTION@: - SETUP BACKEND VIA PAYMENT GETWAY !!  
+@TITLE:-> PAYPAL & BRAINTREE 
+Ref: 🔗✈️ https://developer.paypal.com/braintree/docs/start/overview
+
+-First read Overview 
+-Then Comes Ti 'Simple Server' for copy pest 
+-@NOTE: Make sure tech stack you use Node.js 
+-npm install braintree
+-set PAYMENT Route in app.js 
+
+
+
+
+
+
+
+
 */

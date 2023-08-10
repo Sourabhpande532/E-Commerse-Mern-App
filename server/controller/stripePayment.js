@@ -1,51 +1,52 @@
-const { v4: uuidv4 } = require("uuid");
-const stripe = require("stripe")(
-  "sk_test_51NdDZpSJ2K4IePIet6f00cPGWM4gP4mg0FMp9xgJ2mhB0i6lWbExzhiaM6Ekiqmy7FZZJCSdl2uPtJToQIZOp2e400TfLHnPIM"
-);
+// const { v4: uuidv4 } = require("uuid");
+// const stripe = require("stripe")(
+//   "sk_test_51NdDZpSJ2K4IePIet6f00cPGWM4gP4mg0FMp9xgJ2mhB0i6lWbExzhiaM6Ekiqmy7FZZJCSdl2uPtJToQIZOp2e400TfLHnPIM"
+// );
 
-exports.makePayment = (req, res) => {
-  const { token, products } = req.body;
-  console.log("PRODUCTS", products);
+// exports.makePayment = (req, res) => {
+//   const { token, products } = req.body;
+//   console.log("PRODUCTS", products);
 
-  let ammount = 0;
-  products.map((p) => {
-    ammount = ammount + p.price;
-  });
+//   let ammount = 0;
+//   products.map((p) => {
+//     ammount = ammount + p.price;
+//   });
 
-  const idempotencyKey = uuidv4();
+//   const idempotencyKey = uuidv4();
 
-  return stripe.customers
-    .create({
-      /* BASE ON WE CREATE customers */
-      email: token.email,
-      source: token.id,
-    })
-    .then((customers) => {
-      stripe.charges
-        .create(
-          {
-            ammount: ammount * 100,
-            currency: "usd",
-            customers: customers.id,
-            receipt_email: token.email,
-            description: "a test account",
-            shipping: {
-              name: token.card.name,
-              address: {
-                line1: token.card.address_line1,
-                line2: token.card.address_line2,
-                city: token.card.address_city,
-                country: token.card.address_country,
-                postal_code: token.card.address_zip,
-              },
-            },
-          },
-          { idempotencyKey }
-        )
-        .then((result) => res.status(200).json(result))
-        .catch((err) => console.log(err));
-    });
-};
+//   return stripe.customers
+//     .create({
+//       /* BASE ON WE CREATE customers */
+//       email: token.email,
+//       source: token.id,
+//     })
+//     .then((customers) => {
+//       stripe.charges
+//         .create(
+//           {
+//             ammount: ammount * 100,
+//             currency: "usd",
+//             customers: customers.id,
+//             receipt_email: token.email,
+//             description: "a test account",
+//             shipping: {
+//               name: token.card.name,
+//               address: {
+//                 line1: token.card.address_line1,
+//                 line2: token.card.address_line2,
+//                 city: token.card.address_city,
+//                 country: token.card.address_country,
+//                 postal_code: token.card.address_zip,
+//               },
+//             },
+//           },
+//           { idempotencyKey }
+//         )
+//         .then((result) => res.status(200).json(result))
+//         .catch((err) => console.log(err));
+//     });
+// };
+
 
 /*
 @REFFERENCE: 

@@ -9,7 +9,7 @@ const userRoute = require("./routes/user")
 const categoryRoute = require("./routes/category")
 const productRoute = require("./routes/product")
 const orderRoute = require("./routes/order")
-const stripeRoute = require("./routes/stripePayment")
+const PaymentBRoute = require("./routes/paymentBRoutes")
 
 
 /*Middleware Packages */
@@ -28,7 +28,7 @@ app.use("/api",userRoute);
 app.use("/api",categoryRoute);
 app.use("/api",productRoute);
 app.use("/api",orderRoute);
-app.use("/api",stripeRoute);
+app.use("/api",PaymentBRoute);
 
 
 app.get("/",(req,res)=>{
