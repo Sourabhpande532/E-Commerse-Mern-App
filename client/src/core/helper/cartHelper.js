@@ -45,7 +45,7 @@ export const loadCart = () => {
   }
 };
 
-// empty Cart 
+// EMPTY CART  
 export const cartEmpty = (next) => {
   if (typeof window !== undefined) {
     localStorage.removeItem("cart");
