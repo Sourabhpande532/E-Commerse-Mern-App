@@ -46,9 +46,11 @@ export const loadCart = () => {
 };
 
 // EMPTY CART  
-export const cartEmpty = (next) => {
+export const cartEmpty = next => {
   if (typeof window !== undefined) {
     localStorage.removeItem("cart");
+    let cart = [];
+    localStorage.setItem("cart", JSON.stringify(cart));
     next();
   }
 };

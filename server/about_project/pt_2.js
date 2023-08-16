@@ -490,6 +490,8 @@ Ref: 🔗✈️ https://developer.paypal.com/braintree/docs/start/overview
 -@NOTE: Make sure tech stack you use Node.js 
 -npm install braintree
 -set PAYMENT Route in app.js 
+-then Move to 🗃️paymentBRoute.js route as well contrler also!!
+
 
 
 

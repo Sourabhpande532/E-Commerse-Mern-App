@@ -5,6 +5,7 @@ import Base from "./Base";
 import { loadCart } from "./helper/cartHelper";
 import Card from "./Card";
 import StripeCheckout from "./StripeCheckout";
+import Paymentb from "./Paymentb";
 
 const Cart = () => {
   console.log("API IS", API);
@@ -51,7 +52,9 @@ const Cart = () => {
               <h3>No products in cart</h3>
             )}
           </div>
-          <div className='col-6'>Payment section</div>
+          <div className='col-6'>
+            <Paymentb products = {products} setReload={setReload} />
+          </div>
           {/*<div className='col-6'>
             <StripeCheckout 
             products ={products}

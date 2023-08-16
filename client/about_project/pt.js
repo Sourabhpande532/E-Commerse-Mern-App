@@ -168,12 +168,5 @@ Work on Stripe CheckOut !!
   Now Go This folder 🗃️controller/stripePayment.js 
 
 
-
-
-
-
-
-
-
 ::H.W SECTION 16 part 8
 */
