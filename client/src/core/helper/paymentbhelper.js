@@ -9,10 +9,10 @@ export const getmeToken = (userId, token) => {
       Authorization: `Bearer ${token}`,
     },
   })
-    .then((response) => {
+    .then(response => {
       return response.json();
     })
-    .catch((err) => console.log(err));
+    .catch(err => console.log(err));
 };
 
 export const processPayment = (userId, token, paymentInfo) => {

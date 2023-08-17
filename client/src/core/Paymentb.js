@@ -12,8 +12,53 @@ const Paymentb = ({ products, setReload = (f) => f, reload = undefined }) => {
     success: false,
     clientToken: null,
     error: "",
+    instance: {},
   });
-  return <div>Paymentb</div>;
+
+  const userId = isAuthenticated() && isAuthenticated().user._id;
+  const token = isAuthenticated() && isAuthenticated().token;
+
+  const getToken = (userId, token) => {
+    getmeToken(userId, token).then((info) => {
+      console.log("INFORMATION", info);
+      if (info.error) {
+        setInfo({ ...info, error: info.error });
+      } else {
+        const clientToken = info.clientToken;
+        setInfo({ clientToken });
+      }
+    });
+  };
+
+  const showbtdropIn = () => {
+    return (
+      <div>
+        {info.clientToken !== null && products.length > 0 ? (
+          <div>
+            <DropIn
+              options={{ authorization: info.clientToken }}
+              onInstance={(instance) => (info.instance = instance)}
+              /* coming from docs */
+            />
+            <button className='btn btn-block btn-success'>
+              Buy
+            </button>
+          </div>
+        ) : (
+          <h3>Please login or add something to cart</h3>
+        )}
+      </div>
+    );
+  };
+
+  useEffect(() => {
+    getToken(userId, token);
+  }, []);
+  /*getToken is going to fire Custom token which is getmeToken*/
+
+  return <div>Paymentb
+  {showbtdropIn()}
+  </div>;
 };
 
 export default Paymentb;
@@ -29,5 +74,7 @@ Work for Cart.js braintree payment part at last you'll get!
 -Inject this one into Cart.js 
 -f=>f it mean refrest page instant response back
 -Take Refference of 2nd link 
+
+
 
 */
