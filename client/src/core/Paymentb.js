@@ -40,7 +40,7 @@ const Paymentb = ({ products, setReload = (f) => f, reload = undefined }) => {
               onInstance={(instance) => (info.instance = instance)}
               /* coming from docs */
             />
-            <button className='btn btn-block btn-success'>
+            <button className='btn btn-block btn-success' onClick={onPurchase}>
               Buy
             </button>
           </div>
@@ -56,9 +56,63 @@ const Paymentb = ({ products, setReload = (f) => f, reload = undefined }) => {
   }, []);
   /*getToken is going to fire Custom token which is getmeToken*/
 
-  return <div>Paymentb
-  {showbtdropIn()}
-  </div>;
+  const onPurchase = () => {
+    setInfo({ loading: true });
+    let nonce;
+    let getNonce = info.instance.requestPaymentMethod().then((data) => {
+      nonce = data.nonce;
+      // Payment Collect Data
+      const paymentData = {
+        paymentMethodNonce: nonce,
+        // Ammount which we need to charge
+        amount: getAmount(),
+      };
+      processPayment(userId, token, paymentData)
+        .then((response) => {
+          setInfo({ ...info, success: response.success });
+          console.log("Payment Success");
+          // const orderData = {
+          //   products: products,
+          //   transaction_id: response.transaction.id,
+          //   amount: response.transaction.amount,
+          // };
+          // createOrder(userId, token, orderData);
+          // // EMPTY CART
+          // cartEmpty(() => {
+          //   console.log("Did we got a crash?");
+          // });
+          // // FORCE RELOAD
+          // setReload(!reload);
+        })
+        .catch((error) => {
+          setInfo({ loading: false, success: false });
+          console.log("Payment FAILED");
+        });
+    });
+  };
+
+  const getAmount = () => {
+    let amount = 0;
+    products.map((p) => {
+      amount = amount + p.price;
+    });
+    return amount;
+  };
+
+  /*
+  Q)what is nonce here onPurchase?
+    🎯docs mention nonce that's why 
+  -from where this nonce is coming up Remember we use-
+   -🎯instance: {}, in stat see above which we haven't talke 
+   -🎯This is that phase where API talk to braintree & braintree get back to use with nonce this is the one we atually interact here (info.instance);
+  */
+
+  return (
+    <div>
+      <h2>Your bill is {getAmount()}$</h2>
+      {showbtdropIn()}
+    </div>
+  );
 };
 
 export default Paymentb;
@@ -71,10 +125,7 @@ https://developer.paypal.com/braintree/docs/start/hello-client/javascript/v3/
 
 Take a Refference of above Link Npm package!!
 Work for Cart.js braintree payment part at last you'll get!
--Inject this one into Cart.js 
--f=>f it mean refrest page instant response back
--Take Refference of 2nd link 
-
-
-
+-🎯Inject this one into Cart.js 
+-🎯f=>f it mean refrest page instant response back
+-🎯Take Refference of 2nd link 
 */
